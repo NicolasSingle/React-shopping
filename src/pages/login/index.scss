@@ -1,0 +1,183 @@
+// 公共样式
+.public {
+    height: 100%;
+    width: 100%;
+}
+
+.warp {
+    height: 100%;
+    width: 100%;
+    background: url('../../assets/img/logo-bg.png') no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    position: relative;
+    width: 100%;
+    z-index: 10;
+}
+
+// 登录主页
+.login {
+    .logo {
+        height: 13.333vw;
+        flex: 0 0 50vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 11.467vw;
+            height: 13.333vw;
+        }
+    }
+
+    .center {
+        flex: 1;
+        text-align: center;
+        padding-top: 50px;
+        box-sizing: border-box;
+
+        p:first-child {
+            font-family: JosefinSans-Bold;
+            font-size: 8vw;
+            letter-spacing: 1.6vw;
+            color: #212121;
+        }
+
+        p:last-child {
+            font-family: SFUIDisplay-Regular;
+            font-size: 3.2vw;
+            letter-spacing: 0.64vw;
+            color: #212121;
+            opacity: 0.45;
+            margin-top: 30px;
+        }
+    }
+
+    .footer {
+        flex: 0 0 50vw;
+        width: 100%;
+        background: rgba(255, 255, 255, .3);
+        margin: 0 auto;
+        display: flex;
+        padding: 7% 0;
+        box-sizing: border-box;
+        flex-direction: column;
+        justify-content: space-around;
+
+        .sign {
+            width: 75%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 0 auto;
+            height: 40px;
+            line-height: 40px;
+
+            .sign-title {
+                font-family: SFUIDisplay-Regular;
+                font-size: 4.533vw;
+                letter-spacing: 1vw;
+                color: #1b91e0;
+                height: 100%;
+            }
+
+            .line {
+                width: 8vw;
+                height: 0.533vw;
+                background-color: #212121;
+                border-radius: 0.267vw;
+                opacity: 0.45;
+            }
+        }
+
+        p {
+            font-family: SFUIDisplay-Regular;
+            font-size: 4.533vw;
+            letter-spacing: 1vw;
+            color: #e93f52;
+            text-align: center;
+        }
+    }
+}
+
+
+// SignIn页面
+.sign-in-warp {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    filter: blur(5px);
+    transform: scale(1.05);
+
+}
+
+.public {
+    .inputs {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        z-index: 100;
+        margin-top: 100px;
+        div {
+            width: 100%;
+            padding: 5px 10px;
+            input {
+                width: 100%;
+                height: 40px;
+                background: rgba(0, 0, 0, .2);
+                color: #212121;
+                opacity: 0.45;
+                text-align: center;
+                font-size: 3.733vw;
+                margin-top: 5px;
+            }
+        }
+        .pwd {
+            position: relative;
+            i {
+                opacity: 0.2;
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 25px;
+            }
+        }
+        p {
+            display: flex;
+            justify-content: space-between;
+            padding-left: 10px;
+            width: 100%;
+            margin-top: 30px;
+            span {
+                flex: 1;
+                font-family: SFUIDisplay-Medium;
+                font-size: 2.933vw;
+                letter-spacing: 0.64vw;
+                color: #212121;
+            }
+        }
+        .btn {
+            border-radius: 8.4vw;
+            background-color: #1b91e0;
+            font-family: SFUIDisplay-Medium;
+            font-size: 5.067vw;
+            letter-spacing: 0.613vw;
+            color: #fff;
+            text-align: center;
+            height: 16.8vw;
+            margin-top: 70px;
+            line-height: 16.8vw;
+        }
+        
+    }
+}
