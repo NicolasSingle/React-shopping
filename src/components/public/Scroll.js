@@ -4,10 +4,9 @@ import PropTypes from 'prop-types';
 class Scroll extends Component {
     scroll = null
     render() {
-        const { children } = this.props;//es6解构语法
         return (
-            <div id='warpper'>
-                {children}
+            <div id='scroll'>
+                {this.props.children}
             </div>
         )
     }
@@ -19,12 +18,10 @@ class Scroll extends Component {
         }, 20);
     }
     init() {
-        const ele = document.getElementById('warpper')
+        const ele = document.getElementById('scroll')
         if (!ele) {
             return;
         }
-        console.log(ele);
-        
         this.scroll = new BScroll(ele, {
             probeType: this.props.probeType,
             click: this.props.click,

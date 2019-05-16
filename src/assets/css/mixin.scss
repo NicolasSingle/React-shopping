@@ -1,0 +1,23 @@
+@mixin center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@mixin ellipsis {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+@mixin scroll($top) {
+    position: fixed;
+    top: $top;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    #scroll {
+        height: 100%;
+        overflow: hidden;
+    }
+}

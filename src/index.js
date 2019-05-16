@@ -1,6 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-import 'css/reset.css'
-import 'css/border.css'
-ReactDOM.render(<App />, document.getElementById('root'));
+import Router from './router'
+import 'css/global.scss'
+import { Provider } from 'react-redux'
+import store from './store'
+ReactDOM.render(
+    <Provider store={store}>
+        <Router />
+    </Provider>,
+    document.getElementById('root')
+);
