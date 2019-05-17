@@ -22,10 +22,10 @@ class SignIn extends Component {
                         <i className={`fa ${this.state.check ? 'fa-eye' : 'fa-eye-slash'}`} onClick={this.checkEye}></i>
                     </div>
                     <p>
-                        <span>NEW ACCOUNT</span>
-                        <span>FORGOT PASSWORD</span>
+                        <span>新账户</span>
+                        <span>忘记密码</span>
                     </p>
-                    <span className='btn'>LOG IN</span>
+                    <span className='btn'>登 录</span>
                 </div>
             </div>
 

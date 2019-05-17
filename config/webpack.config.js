@@ -24,7 +24,7 @@ const getClientEnvironment = require('./env');
 const ModuleNotFoundPlugin = require('react-dev-utils/ModuleNotFoundPlugin');
 const ForkTsCheckerWebpackPlugin = require('react-dev-utils/ForkTsCheckerWebpackPlugin');
 const typescriptFormatter = require('react-dev-utils/typescriptFormatter');
-
+const postcssCssnext = require('postcss-cssnext')
 const postcssNormalize = require('postcss-normalize');
 const postcssPxToViewport = require('postcss-px-to-viewport');
 const postcssWriteSvg = require('postcss-write-svg');
@@ -99,6 +99,7 @@ module.exports = function (webpackEnv) {
               },
               stage: 3,
             }),
+            postcssCssnext,
             postcssPxToViewport({
               viewportWidth: 375,
               viewportHeight: 667,
