@@ -18,17 +18,16 @@ class SignIn extends Component {
                         <i className='fa fa-close' onClick={this.clear}></i>
                     </div>
                     <div className='pwd'>
-                        <input maxLength='16' type={this.state.check ?'text':'password'} placeholder='PASSWORD' />
+                        <input maxLength='16' type={this.state.check ? 'text' : 'password'} placeholder='PASSWORD' />
                         <i className={`fa ${this.state.check ? 'fa-eye' : 'fa-eye-slash'}`} onClick={this.checkEye}></i>
                     </div>
                     <p>
-                        <span>新账户</span>
+                        <span onClick={this.goRegister}>新账户</span>
                         <span>忘记密码</span>
                     </p>
                     <span className='btn'>登 录</span>
                 </div>
             </div>
-
         )
     }
 
@@ -46,7 +45,12 @@ class SignIn extends Component {
 
     // 清空用户名
     clear = () => {
-        
+
+    }
+
+    // 新账户
+    goRegister = () => {
+        this.props.history.push('/register');
     }
 }
 

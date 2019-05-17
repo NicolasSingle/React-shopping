@@ -29,7 +29,7 @@ class Login extends Component {
     }
 
     signUp = () => {
-        console.log(1);
+        this.props.history.push('/register');
     }
 }
 

@@ -4,6 +4,18 @@
     @include scroll(0)
 }
 
+#root>div {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+#root>div>div {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
 .fade-enter {
     opacity: 0;
     z-index: 1;
