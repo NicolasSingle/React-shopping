@@ -9,7 +9,10 @@
     width: 100%;
     overflow: hidden;
 }
-
+.page-warp {
+    height: 100%;
+    width: 100%;
+}
 #root>div>div {
     height: 100%;
     width: 100%;
@@ -23,5 +26,9 @@
 
 .fade-enter.fade-enter-active {
     opacity: 1;
-    transition: opacity 250ms ease-in;
+    transition: opacity 300ms ease-in;
+}
+.error-icon{
+    font-size: 30px;
+    margin-bottom: 5px;
 }

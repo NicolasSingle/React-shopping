@@ -3,9 +3,8 @@ import './index.scss'
 import NavHeader from 'public/NavHeader'
 import Api from 'api/api'
 import { toast } from 'js/utils'
-class Register extends Component {
+class RestorePassword extends Component {
     state = {
-        username: '',
         password: '',
         email: ''
     }
@@ -15,12 +14,9 @@ class Register extends Component {
             <div className='public'>
                 <div className='sign-in-warp warp'></div>
                 <div className='header'>
-                    <NavHeader goBack={this.goBack} icon={true} title='新账户' />
+                    <NavHeader goBack={this.goBack} icon={true} title='找回密码' />
                 </div>
                 <div className='inputs'>
-                    <div className='pwd'>
-                        <input maxLength='10' name='username' defaultValue={this.state.username} onChange={this.handleInputChange} type='text' placeholder='USERNAME' />
-                    </div>
                     <div className='pwd'>
                         <input type='email' name='email' placeholder='EMAIL' defaultValue={this.state.email} onChange={this.handleInputChange} />
                     </div>
@@ -28,9 +24,9 @@ class Register extends Component {
                         <input maxLength='16' name='password' placeholder='PASSWORD' defaultValue={this.state.password} onChange={this.handleInputChange} />
                     </div>
                     <p>
-                        <span onClick={this.goSignin}>已经有账户了吗？</span>
+                        <span>通过电子邮件还原密码</span>
                     </p>
-                    <span className='btn' onClick={this.register}>注 册</span>
+                    <span className='btn' onClick={this.restorePassword}>确认修改</span>
                 </div>
             </div>
         )
@@ -40,9 +36,6 @@ class Register extends Component {
         this.props.history.push('/login/index');
     }
 
-    goSignin = () => {
-        this.props.history.push('/login/signin');
-    }
 
     handleInputChange = e => {
         e.persist()
@@ -51,28 +44,24 @@ class Register extends Component {
         }))
     }
     // 注册
-    register = async () => {
+    restorePassword = async () => {
         const state = this.state
-        if (!state.username || !state.password || !state.email) {
+        if ( !state.password || !state.email) {
             return toast('请填写完整信息')
         }
         const reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
         if (!reg.test(state.email)) {
             return toast('邮箱格式错误')
         }
-        Api.register(state).then(res => {
-            if (res.code == 10000) {
-                toast(res.msg, 'right-round')
-                localStorage.setItem('token', res.data)
-                setTimeout(() => {
-                    this.props.history.push('/home');
-                }, 1000);
-            }
-
+        Api.restorePassword(state).then(res => {
+            toast(res.msg,'right-round')
+            setTimeout(() => {
+                this.props.history.push('/login/index');
+            }, 1000);
         })
-
+        
     }
 }
 
 
-export default Register
+export default RestorePassword

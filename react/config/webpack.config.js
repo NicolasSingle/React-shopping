@@ -93,6 +93,8 @@ module.exports = function (webpackEnv) {
           ident: 'postcss',
           plugins: () => [
             require('postcss-flexbugs-fixes'),
+            require('autoprefixer'),
+            require('cssnano-preset-advanced'),
             require('postcss-preset-env')({
               autoprefixer: {
                 flexbox: 'no-2009',
@@ -114,7 +116,7 @@ module.exports = function (webpackEnv) {
             }),
             cssnano({
               preset: "advanced",
-              autoprefixer: false,
+              autoprefixer: true,
               "postcss-zindex": false
             }),
             postcssNormalize(),
@@ -295,7 +297,8 @@ module.exports = function (webpackEnv) {
         c: path.resolve(__dirname,'../src/components'),
         public: path.resolve(__dirname,'../src/components/public'),
         pages: path.resolve(__dirname,'../src/pages'),
-        '@':path.resolve(__dirname,'../src'),
+        api: path.resolve(__dirname,'../src/api'),
+        '@':path.resolve(__dirname,'../src/'),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

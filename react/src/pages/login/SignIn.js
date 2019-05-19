@@ -10,7 +10,7 @@ class SignIn extends Component {
             <div className='public'>
                 <div className='sign-in-warp warp'></div>
                 <div className='header'>
-                    <NavHeader goBack={this.goBack} icon={true} />
+                    <NavHeader goBack={this.goBack} icon={true} title='登 录'/>
                 </div>
                 <div className='inputs'>
                     <div className='pwd'>
@@ -23,7 +23,7 @@ class SignIn extends Component {
                     </div>
                     <p>
                         <span onClick={this.goRegister}>新账户</span>
-                        <span>忘记密码</span>
+                        <span onClick={this.restorePassword}>忘记密码？</span>
                     </p>
                     <span className='btn'>登 录</span>
                 </div>
@@ -33,7 +33,7 @@ class SignIn extends Component {
 
     // 返回上一页
     goBack = () => {
-        this.props.history.push('/login');
+        this.props.history.push('/login/index');
     }
 
     // 切换明文密码
@@ -50,7 +50,11 @@ class SignIn extends Component {
 
     // 新账户
     goRegister = () => {
-        this.props.history.push('/register');
+        this.props.history.push('/login/register');
+    }
+
+    restorePassword = () => {
+        this.props.history.push('/login/restorePassword');
     }
 }
 

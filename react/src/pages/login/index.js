@@ -25,11 +25,11 @@ class Login extends Component {
     }
 
     signIn = () => {
-        this.props.history.push('/signIn');
+        this.props.history.push('/login/signIn');
     }
 
     signUp = () => {
-        this.props.history.push('/register');
+        this.props.history.push('/login/register');
     }
 }
 
