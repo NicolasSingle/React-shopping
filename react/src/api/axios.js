@@ -4,13 +4,21 @@ const debug = process.env.NODE_ENV === 'production'
 axios.interceptors.request.use(config => {
     try {
         let token = localStorage.getItem('token')
+        // if (token) {
+        //     if (!debug) {
+        //         config.url = '/api' + config.url
+        //     }
+        //     config.headers.Authorization = token
+        // } else {
+        //     window.location.href = '/#/login'
+        // }
+        if (!debug) {
+            config.url = '/api' + config.url
+        }
         if (token) {
-            if (!debug) {
-                config.url = '/api' + config.url
-            }
             config.headers.Authorization = token
         } else {
-            window.location.href = '/#/login'
+            // window.location.href = '/#/login'
         }
         return config;
     } catch (error) {
@@ -28,7 +36,7 @@ axios.interceptors.response.use(
         if (error.response) {
             if (error.response.status == 401) {
                 window.location.href = '/#/login'
-            } 
+            }
         }
         return Promise.reject(error.response.data)   // 返回接口返回的错误信息
     })
@@ -48,7 +56,7 @@ export default (url, type = 'post') => {
             } else if (data.code == 10002) {    // 接口其他提示信息
                 toast(data.msg)
                 return data
-            } 
+            }
             // 错误物理请求处理
         }).catch(err => {
             toast('服务器超时')

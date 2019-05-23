@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
-import { TransitionGroup, CSSTransition } from "react-transition-group"
+// import { TransitionGroup, CSSTransition } from "react-transition-group"
 // import Loadable from 'react-loadable';
 import App from './App'
 import Home from 'pages/home'       //首页

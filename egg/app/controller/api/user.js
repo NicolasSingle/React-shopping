@@ -24,7 +24,7 @@ class UserController extends BaseController {
             if (data.password != md5(password)) {
                 this.error('密码错误')
             } else {
-                const token = await this.service.token.setToken(user.username)
+                const token = await this.service.token.setToken(username)
                 this.success('登录成功', token)
             }
         }
@@ -46,10 +46,11 @@ class UserController extends BaseController {
         let data2 = await ctx.model.User.findOne({ email })
         if (!data && !data2) {
             password = md5(password)
-            let user = await new ctx.model.User(ctx.request.body)
+            let user = await new ctx.model.User({username,password,email})
             await user.save()
             // Token
-            
+            const token = await this.service.token.setToken(user.username)
+            this.success('注册成功', token)
         } else {
             if (data && data.username === username) return this.error('用户名已存在')
             if (data2 && data2.email === email) return this.error('邮箱已存在')
@@ -74,6 +75,8 @@ class UserController extends BaseController {
             this.error('该邮箱未注册！')
         }
     }
+
+
 
 }
 

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import './index.scss'
 import NavHeader from 'public/NavHeader'
-import Api from 'api/api'
+import { connect } from 'react-redux';
 import { toast } from 'js/utils'
+import * as action_fn from './store/action_fn'
 class RestorePassword extends Component {
     state = {
         password: '',
@@ -43,25 +44,25 @@ class RestorePassword extends Component {
             [e.target.name]: e.target.value
         }))
     }
-    // 注册
+
     restorePassword = async () => {
         const state = this.state
-        if ( !state.password || !state.email) {
+        if (!state.password || !state.email) {
             return toast('请填写完整信息')
         }
         const reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
         if (!reg.test(state.email)) {
             return toast('邮箱格式错误')
         }
-        Api.restorePassword(state).then(res => {
-            toast(res.msg,'right-round')
-            setTimeout(() => {
-                this.props.history.push('/login/index');
-            }, 1000);
-        })
-        
+        this.props.restorePassword(state,this)
+
     }
 }
 
+const mapActions = dispatch => ({
+    restorePassword(state,that) {
+        dispatch(action_fn.restorePassword(state,that))
+    }
+})
 
-export default RestorePassword
+export default connect(null, mapActions)(RestorePassword)

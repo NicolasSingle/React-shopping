@@ -1,6 +1,6 @@
 module.exports = function (opt, app) {
     return async (ctx, next) => {
-        const arr = ['/register', '/login']
+        const arr = ['/register', '/login','/resetPassword']
         if (arr.includes(ctx.url)) {
             await next()    // 没有登录也能请求
 

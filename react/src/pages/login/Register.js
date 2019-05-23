@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import './index.scss'
 import NavHeader from 'public/NavHeader'
-import Api from 'api/api'
 import { toast } from 'js/utils'
+import { connect } from 'react-redux';
+import * as action_fn from './store/action_fn'
 class Register extends Component {
     state = {
         username: '',
@@ -25,7 +26,7 @@ class Register extends Component {
                         <input type='email' name='email' placeholder='EMAIL' defaultValue={this.state.email} onChange={this.handleInputChange} />
                     </div>
                     <div className='pwd'>
-                        <input maxLength='16' name='password' placeholder='PASSWORD' defaultValue={this.state.password} onChange={this.handleInputChange} />
+                        <input maxLength='16' type='password' name='password' placeholder='PASSWORD' defaultValue={this.state.password} onChange={this.handleInputChange} />
                     </div>
                     <p>
                         <span onClick={this.goSignin}>已经有账户了吗？</span>
@@ -60,19 +61,15 @@ class Register extends Component {
         if (!reg.test(state.email)) {
             return toast('邮箱格式错误')
         }
-        Api.register(state).then(res => {
-            if (res.code == 10000) {
-                toast(res.msg, 'right-round')
-                localStorage.setItem('token', res.data)
-                setTimeout(() => {
-                    this.props.history.push('/home');
-                }, 1000);
-            }
-
-        })
-
+        // 注册
+        this.props.register(state,this)
     }
 }
 
+const mapActions = dispatch => ({
+    register(state,that) {
+        dispatch(action_fn.register(state,that))
+    }
+})
 
-export default Register
+export default connect(null, mapActions)(Register)

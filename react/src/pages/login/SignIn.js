@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import './index.scss'
 import NavHeader from 'public/NavHeader'
+import { connect } from 'react-redux';
+import { toast } from 'js/utils'
+import * as action_fn from './store/action_fn'
+
 class SignIn extends Component {
     state = {
         check: false,
@@ -47,7 +51,9 @@ class SignIn extends Component {
 
     // 清空用户名
     clear = () => {
-
+        this.setState(prev => ({
+            username: ''
+        }))
     }
 
     // 新账户
@@ -68,8 +74,16 @@ class SignIn extends Component {
 
     // 登录
     login = () => {
-        console.log(this.state.password);
-        console.log(this.state.username);
+        if (!this.state.username || !this.state.password) {
+            return toast('请填写用户名或密码')
+        }
+        this.props.signin(this.state.username, this.state.password, this)
     }
 }
-export default SignIn
+
+const mapActions = dispatch => ({
+    signin(name, pwd, that) {
+        dispatch(action_fn.signin(name, pwd, that))
+    }
+})
+export default connect(null, mapActions)(SignIn)
