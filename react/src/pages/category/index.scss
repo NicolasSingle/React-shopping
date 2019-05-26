@@ -1,0 +1,61 @@
+.content {
+    display: flex;
+
+    .left {
+        background: #f1f8ff;
+        flex: 0 0 21.333vw;
+        height: calc(100vh - 90px);
+
+        li {
+            color: #666;
+            height: 11.467vw;
+            line-height: 11.467vw;
+            font-size: 3.733vw;
+            text-align: center;
+            border-bottom: 1px solid #efefef;
+        }
+
+        li.active {
+            background: #fff;
+        }
+
+    }
+
+    .right {
+        overflow-x: auto;
+        flex: 1;
+        .za-tabs__header {
+            overflow-x: auto;
+            height: 43px;
+            border-bottom: 1px solid #f1f1f1;
+
+            ul {
+                display: inherit;
+                overflow-x: auto;
+                height: 100%;
+                overflow-y: hidden;
+                li {
+                    width: 80px;
+                    float: left;
+                }
+            }
+
+            .za-tabs__header__item {
+                font-size: 3.733vw;
+            }
+
+        }
+    }
+}
+
+.za-tabs__header::-webkit-scrollbar {
+    display: none;
+    overflow: -moz-hidden-unscrollable; /*注意！若只打 hidden，chrome 的其它 hidden 会出问题*/
+}
+.za-tabs__header ul::-webkit-scrollbar {
+    display: none;
+    overflow: -moz-hidden-unscrollable; /*注意！若只打 hidden，chrome 的其它 hidden 会出问题*/
+}
+.za-tabs__header ul:after {
+    border: 0;
+}

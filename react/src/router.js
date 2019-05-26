@@ -4,12 +4,14 @@ import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
 // import Loadable from 'react-loadable';
 import App from './App'
 import Home from 'pages/home'       //首页
+import Category from 'pages/category'       //分类
+import ShoppingCart from 'pages/shoppingCart'       //购物车
+import My from 'pages/my'       //我的
 import Login from 'pages/login'     //登录主页
 import SignIn from 'pages/login/SignIn'     //登录
 import Register from 'pages/login/Register'     //注册
 import RestorePassword from 'pages/login/RestorePassword'     //还原密码
-import Main from './Main'
-import Man from 'pages/man/Man'
+// import Main from './Main'
 import './index.scss'
 const Logins = [
     { path: "/login/signIn", name: "SignIn", component: SignIn, noAuth: true },
@@ -21,9 +23,11 @@ const Logins = [
 
 const Homes = [
     { path: "/home", name: "Home", component: Home, },
-    { path: "/man", name: "Man", component: Man, },
-    // { path: "/", name: "Home", component: Home },
-    // { path: "/user", name: "User", component: User,auth:true},
+    { path: "/category", name: "Category", component: Category, },
+    { path: "/shoppingCart", name: "ShoppingCart", component: ShoppingCart, },
+    { path: "/my", name: "My", component: My, },
+    { path: "/", name: "Home", component: Home, },
+
 ]
 class ERouter extends Component {
     render() {
@@ -42,11 +46,15 @@ class ERouter extends Component {
 
                         {/* 主页面相关 */}
                         <Route path="/" render={() =>
-                            <Main>
+                            // <Main>
+                            //     {
+                            <Switch>
                                 {
                                     Homes.map((item, index) => <Route key={index} path={item.path} render={props => this.route(item, props)} />)
                                 }
-                            </Main>
+                            </Switch>
+                            //     }
+                            // </Main>
                         } />
 
                     </Switch>

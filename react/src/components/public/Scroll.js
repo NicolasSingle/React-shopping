@@ -6,7 +6,9 @@ class Scroll extends Component {
     render() {
         return (
             <div id='scroll'>
-                {this.props.children}
+                <div>
+                    {this.props.children}
+                </div>
             </div>
         )
     }
