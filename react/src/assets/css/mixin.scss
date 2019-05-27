@@ -10,10 +10,10 @@
     white-space: nowrap;
 }
 
-@mixin scroll($top,$bottom) {
+@mixin scroll($top,$bottom,$left) {
     position: fixed;
     top: $top;
-    left: 0;
+    left: $left;
     right: 0;
     bottom: $bottom;
     #scroll {

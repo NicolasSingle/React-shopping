@@ -13,7 +13,7 @@ class Scroll extends Component {
         )
     }
 
-    componentWillMount() {
+    componentDidMount() {
         setTimeout(() => {
             //确保在dom初始化后才执行滚动方法
             this.init();

@@ -46,7 +46,7 @@ axios.interceptors.response.use(
 export default (url, type = 'post') => {
     // 返回axios
     return params => {
-        return axios[type](url, params).then(res => {
+        return axios[type](url, type == 'get' ? { params } : params).then(res => {
             const { status, data } = res;
             // 正确状态处理
             if (status == 200 && data.code == 10000) {
