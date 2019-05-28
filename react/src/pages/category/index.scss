@@ -25,42 +25,29 @@
     .right {
         overflow-x: auto;
         flex: 1;
-        .za-tabs__header {
+        .tab-title {
             overflow-x: auto;
             height: 43px;
             border-bottom: 1px solid #f1f1f1;
-
-            ul {
-                display: inherit; 
-                overflow-x: auto;
+            display: flex;
+            text-align: center;
+            .tab-item {
                 height: 100%;
-                overflow-y: hidden;
-                li {
-                    width: 80px;
-                    float: left;
-                }
+                display: flex;
+                align-items: center;
+                width: 21.333vw;
+                justify-content: center;
             }
-
-            .za-tabs__header__item {
-                font-size: 3.733vw;
+            .tab-item.active {
+                color: #e0322b;
             }
-
         }
     }
 }
 
-.za-tabs__header::-webkit-scrollbar {
-    display: none;
-    overflow: -moz-hidden-unscrollable; /*注意！若只打 hidden，chrome 的其它 hidden 会出问题*/
-}
-.za-tabs__header ul::-webkit-scrollbar {
-    display: none;
-    overflow: -moz-hidden-unscrollable; /*注意！若只打 hidden，chrome 的其它 hidden 会出问题*/
-}
-.za-tabs__header ul:after {
-    border: 0;
-}
+
+
 
 .scroll-warpper-category {
-    @include scroll(88px,50px,21.333vw)
+    @include scroll(86px,50px,21.333vw)
 }

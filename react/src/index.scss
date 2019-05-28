@@ -1,16 +1,26 @@
 @import '~css/mixin';
 
-
+*::-webkit-scrollbar {
+    display: none;
+    overflow: -moz-hidden-unscrollable;
+    /*注意！若只打 hidden，chrome 的其它 hidden 会出问题*/
+}
 
 #root>div {
     height: 100%;
     width: 100%;
     overflow: hidden;
 }
+
+#root .goods-item:last-child::before {
+    border: 0;
+}
+
 .page-warp {
     height: 100%;
     width: 100%;
 }
+
 #root>div>div {
     height: 100%;
     width: 100%;
@@ -26,7 +36,8 @@
     opacity: 1;
     transition: opacity 300ms ease-in;
 }
-.error-icon{
+
+.error-icon {
     font-size: 30px;
     margin-bottom: 5px;
 }

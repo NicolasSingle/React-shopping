@@ -12,13 +12,8 @@ const _categoryGoodsItem = data => ({
     data
 })
 
-// 获取商品列表
-const getGoodsList = async mallSubId => {
-    const data = await Api.classification({ mallSubId })
-    if (data.code == 10000) {
-        return data
-    }
-}
+
+
 export const getCategory = that => {
     // const state = store.getState()
     // const data = state.getIn(['home', 'recommend'])
@@ -31,8 +26,18 @@ export const getCategory = that => {
             }))
             const defaultId = data.data.category[0].bxMallSubDto[0].mallSubId
             // 请求默认分类数据
-            const data2 = await getGoodsList(defaultId)
-            dispatch(_categoryGoodsItem(data2.data))
+            getGoodsList(defaultId)(dispatch)
         }
     }
+}
+
+// 获取商品列表
+export const getGoodsList = mallSubId => {
+    return async dispatch => {
+        const data = await Api.classification({ mallSubId })
+        if (data.code == 10000) {
+            dispatch(_categoryGoodsItem(data.data))
+        }
+    }
+
 }

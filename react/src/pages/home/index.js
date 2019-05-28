@@ -23,7 +23,7 @@ class Home extends React.Component {
             <div >
                 <Search />
                 <div className='scroll-warpper'>
-                    <Scroll>
+                    <Scroll pullup={true} onPullup={this.onPullup}>
                         <Swiper slider={recommend.get('slides')} />
                         <Panl panlList={recommend.get('category')} />
                         <Commodity goodItem={recommend.get('recommend')} />
@@ -36,6 +36,10 @@ class Home extends React.Component {
                 <NavFooter/>
             </div>
         )
+    }
+
+    onPullup = that => {
+        that.refresh()
     }
 }
 

@@ -16,7 +16,7 @@
     left: $left;
     right: 0;
     bottom: $bottom;
-    #scroll {
+    .scroll-warpper-app {
         height: 100%;
         overflow: hidden;
     }

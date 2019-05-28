@@ -1,18 +1,21 @@
 import React, { Component } from 'react'
 import BScroll from "better-scroll";
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
 class Scroll extends Component {
     scroll = null
     render() {
         return (
-            <div id='scroll'>
+            <div className='scroll-warpper-app'>
                 <div>
                     {this.props.children}
                 </div>
             </div>
         )
     }
-
+    componentWillReceiveProps() {
+        // this.scrollTo(0, 0, 300)
+    }
     componentDidMount() {
         setTimeout(() => {
             //确保在dom初始化后才执行滚动方法
@@ -20,7 +23,7 @@ class Scroll extends Component {
         }, 20);
     }
     init() {
-        const ele = document.getElementById('scroll')
+        const ele = document.querySelector('.scroll-warpper-app')
         if (!ele) {
             return;
         }
@@ -42,7 +45,7 @@ class Scroll extends Component {
         if (this.props.pullup) {
             this.scroll.on("scrollEnd", () => {
                 if (this.scroll.y <= this.scroll.maxScrollY + 50) {
-                    this.$emit("scrollToEnd");
+                    this.props.onPullup(this)
                 }
             });
         }
@@ -65,6 +68,7 @@ class Scroll extends Component {
                 this.$emit("beforeScroll");
             });
         }
+       
     }
     // 开启滚动
     enable() {
@@ -108,8 +112,8 @@ Scroll.defaultProps = {
     pullDownRefresh: false,
     beforeScroll: false,
     bounce: {
-        top:true
+        top: true
     },
 };
 
-export default Scroll
+export default connect(null,null)(Scroll)
