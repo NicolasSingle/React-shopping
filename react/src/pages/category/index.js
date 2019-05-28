@@ -12,6 +12,7 @@ class Category extends Component {
         rightTabIndex: 0,
         list: [],
         defaultValue: 0,
+        scrollTo: false
     }
     componentDidMount() {
         this.props.getCategory(this)
@@ -40,7 +41,7 @@ class Category extends Component {
                             }
                         </div>
                         <div className="scroll-warpper-category">
-                            <Scroll>
+                            <Scroll scrollTo={this.state.scrollTo}>
                                 {
                                     this.props.goodsItem.map(item => {
                                         return <GoodsItem key={item.get('id')} goodsItem={item} />
@@ -57,7 +58,6 @@ class Category extends Component {
 
     // 点击左侧列表
     onLeftTab = (val, index) => {
-        console.log(this.props);
         
         if (this.state.leftTabIndex == index) {
             return
@@ -69,6 +69,7 @@ class Category extends Component {
         this.setState(prev => ({
             leftTabIndex: index,
             list: val.get('bxMallSubDto'),
+            scrollTo: true,
         }))
         this.getEle(val.get('bxMallSubDto').size)
     }

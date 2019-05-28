@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import BScroll from "better-scroll";
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux'
 class Scroll extends Component {
     scroll = null
     render() {
@@ -68,7 +67,15 @@ class Scroll extends Component {
                 this.$emit("beforeScroll");
             });
         }
-       
+        console.log(this.props.scrollTo);
+        
+        // 事件监听
+        if (this.props.scrollTo) {
+            console.log(1111);
+            
+            // this.props.onEventListeners(this)
+            this.scrollTo(0, 0, 300)
+        }
     }
     // 开启滚动
     enable() {
@@ -101,6 +108,7 @@ Scroll.propTypes = {
     pullDownRefresh: PropTypes.bool,
     beforeScroll: PropTypes.bool,
     bounce: PropTypes.object,
+    scrollTo: PropTypes.bool,
 };
 
 Scroll.defaultProps = {
@@ -114,6 +122,7 @@ Scroll.defaultProps = {
     bounce: {
         top: true
     },
+    scrollTo: false
 };
 
-export default connect(null,null)(Scroll)
+export default Scroll
