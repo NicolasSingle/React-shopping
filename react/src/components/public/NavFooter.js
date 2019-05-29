@@ -9,7 +9,7 @@ class NavFooter extends Component {
             { title: '我的', icon: 'fa fa-user', id: 3, path: '/my' },
         ]
         return (
-            <div className='footer'>
+            <div className='nav-footer'>
                 {
                     footer.map(item => {
                         return (

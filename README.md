@@ -24,7 +24,7 @@
 
 ##### 1：请确保node版本在8以上，本地安装好mongodb数据库并且打开连接
 
-##### 2：进入 egg 目录，在此目录下打开cmd窗口运行 cnpm i 安装依赖,然后 npm run dev 启动本地服务,打开http://127.0.0.1:7001/data  会自动把数据导入数据库,第一次运行项目需要导入打开默认导入一次（会自动把json数据导入数据库，看到控制台打印成功才能运行）
+##### 2：进入 egg 目录，在此目录下打开cmd窗口运行 cnpm i 安装依赖,然后 npm run dev 启动本地服务,打开http://127.0.0.1:7002/data  会自动把数据导入数据库,第一次运行项目需要导入打开默认导入一次（会自动把json数据导入数据库，看到控制台打印成功才能运行）
 
 ##### 3：进入 react 目录，在此目录下打开cmd窗口运行 npm i 安装依赖,然后 npm run dev 启动项目
 
@@ -86,7 +86,7 @@ const proxy = require('http-proxy-middleware')
 module.exports = function (app) {
     app.use(proxy('/api',
         {
-            target: 'http://localhost:7001',
+            target: 'http://localhost:7002',
             pathRewrite: {
                 "^/api": ""
             },

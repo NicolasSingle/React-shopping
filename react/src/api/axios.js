@@ -35,6 +35,7 @@ axios.interceptors.response.use(
     error => {
         if (error.response) {
             if (error.response.status == 401) {
+                isShowLoading(true,'none')    // 隐藏loading
                 window.location.href = '/#/login'
             }
         }
@@ -56,6 +57,7 @@ export default (url, type = 'post', isShowLoadings = true) => {
                 return data;
             } else if (data.code == 20001) {  // token过期或者未登录
                 window.location.href = '/#/login'
+                isShowLoading(isShowLoadings,'none')    // 隐藏loading
             } else if (data.code == 10002) {    // 接口其他提示信息
                 toast(data.msg)
                 return data
