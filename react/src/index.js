@@ -7,11 +7,8 @@ import 'css/global.scss'
 import { Provider } from 'react-redux'
 import store from './store'
 ReactDOM.render(
-
     <Provider store={store}>
-        
-                <Router />
-           
+        <Router />
     </Provider>,
     document.getElementById('root')
 ); 
