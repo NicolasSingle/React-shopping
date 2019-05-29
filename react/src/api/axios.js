@@ -43,10 +43,13 @@ axios.interceptors.response.use(
 
 
 // 默认请求成功状态
-export default (url, type = 'post') => {
+export default (url, type = 'post', isShowLoadings = true) => {
+
     // 返回axios
     return params => {
-        return axios[type](url, type == 'get' ? { params } : params).then(res => {
+        isShowLoading(isShowLoadings,'block')   // 显示loading
+        return axios[type](url, type === 'get' ? { params } : params).then(res => {
+            isShowLoading(isShowLoadings,'none')    // 请求成功隐藏loading
             const { status, data } = res;
             // 正确状态处理
             if (status == 200 && data.code == 10000) {
@@ -62,5 +65,14 @@ export default (url, type = 'post') => {
             toast('服务器超时')
             return Promise.reject(err)   // 返回接口返回的错误信息
         })
+    }
+}
+const isShowLoading = (loadings,style) => {
+    let loading, overlay;
+    if (loadings) {
+        loading = document.querySelector('#loadding');
+        overlay = document.querySelector('.van-overlay ');
+        overlay.style.display = style;
+        loading.style.display = style;
     }
 }

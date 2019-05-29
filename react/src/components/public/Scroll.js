@@ -19,6 +19,9 @@ class Scroll extends Component {
         setTimeout(() => {
             //确保在dom初始化后才执行滚动方法
             this.init();
+            if (this.props.isToelement) {
+                this.props.onRef(this)
+            }
         }, 20);
     }
     init() {
@@ -67,15 +70,7 @@ class Scroll extends Component {
                 this.$emit("beforeScroll");
             });
         }
-        console.log(this.props.scrollTo);
-        
-        // 事件监听
-        if (this.props.scrollTo) {
-            console.log(1111);
-            
-            // this.props.onEventListeners(this)
-            this.scrollTo(0, 0, 300)
-        }
+
     }
     // 开启滚动
     enable() {
@@ -108,7 +103,7 @@ Scroll.propTypes = {
     pullDownRefresh: PropTypes.bool,
     beforeScroll: PropTypes.bool,
     bounce: PropTypes.object,
-    scrollTo: PropTypes.bool,
+    isToelement: PropTypes.bool,
 };
 
 Scroll.defaultProps = {
@@ -122,7 +117,7 @@ Scroll.defaultProps = {
     bounce: {
         top: true
     },
-    scrollTo: false
+    isToelement: false, //是否能获取这个组件的dom
 };
 
 export default Scroll

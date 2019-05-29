@@ -1,23 +1,165 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8" />
     <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0" />
     <meta name="theme-color" content="#000000" />
-    <script src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
+    <script
+        src="//g.alicdn.com/fdilab/lib3rd/viewport-units-buggyfill/0.6.2/??viewport-units-buggyfill.hacks.min.js,viewport-units-buggyfill.min.js"></script>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <title>React App</title>
-  </head>
-  <body>
-    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <style>
+        #loadding {
+            display: none;
+        }
+
+        .van-overlay {
+            display: none;
+            transition: .3s;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .7);
+        }
+
+        .van-toast--default {
+            width: 24vw;
+            padding: 4vw;
+            height: 24vw;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            color: #fff;
+            font-size: 3.733vw;
+            line-height: 5.333vw;
+            border-radius: 1.067vw;
+            word-break: break-all;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -webkit-box-orient: vertical;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            -webkit-box-sizing: content-box;
+            box-sizing: content-box;
+            -webkit-transform: translate3d(-50%, -50%, 0);
+            transform: translate3d(-50%, -50%, 0);
+            background-color: rgba(50, 50, 51, .88);
+            white-space: pre-wrap;
+        }
+
+        .van-toast__text {
+            padding-top: 1.333vw;
+        }
+
+        .van-loading {
+            width: 8vw;
+            height: 8vw;
+            z-index: 0;
+            font-size: 0;
+            line-height: 0;
+            position: relative;
+            vertical-align: middle;
+            margin: 2.667vw 0;
+            color: white;
+        }
+
+        .van-loading__spinner {
+            z-index: -1;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            display: inline-block;
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-animation: van-rotate .8s linear infinite;
+            animation: van-rotate .8s linear infinite;
+            animation-duration: 2s;
+
+
+        }
+
+        .van-loading__circular:not(:root) {
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+
+
+        }
+
+        circle {
+            stroke: currentColor;
+            stroke-width: 3;
+            stroke-linecap: round;
+            -webkit-animation: van-circular 1.5s ease-in-out infinite;
+            animation: van-circular 1.5s ease-in-out infinite;
+        }
+
+        @keyframes van-rotate {
+            0% {
+                -webkit-transform: rotate(0deg);
+                transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(1turn);
+                transform: rotate(1turn);
+            }
+        }
+
+        @keyframes van-circular {
+            0% {
+                stroke-dasharray: 1, 200;
+                stroke-dashoffset: 0;
+            }
+
+            50% {
+                stroke-dasharray: 90, 150;
+                stroke-dashoffset: -40;
+            }
+
+            100% {
+                stroke-dasharray: 90, 150;
+                stroke-dashoffset: -120;
+            }
+        }
+    </style>
+</head>
+
+<body>
     <div id="root"></div>
     <script>
-      window.onload = function () {
-        window.viewportUnitsBuggyfill.init({
-          hacks: window.viewportUnitsBuggyfillHacks
-        });
-      }
+        window.onload = function () {
+            window.viewportUnitsBuggyfill.init({
+                hacks: window.viewportUnitsBuggyfillHacks
+            });
+        }
     </script>
-  </body>
+    <div id="loadding">
+        <div class="van-toast van-toast--default van-toast--middle" style="z-index: 2024;">
+            <div class="van-loading van-loading--circular van-loading--white" style="color: white;">
+                <span class="van-loading__spinner van-loading__spinner--circular">
+                    <svg viewBox="25 25 50 50" class="van-loading__circular">
+                        <circle cx="50" cy="50" r="20" fill="none"></circle>
+                    </svg>
+                </span>
+            </div>
+            <div class="van-toast__text">加载中</div>
+        </div>
+    </div>
+    <div class="van-overlay" style="z-index: 2023;"></div>
+
+</body>
+
 </html>

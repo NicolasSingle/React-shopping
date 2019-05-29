@@ -6,7 +6,6 @@ const defauleState = fromJS({
 })
 
 const reducer = (state = defauleState, action) => {
-
     if (action.type === types.CATEGORY_TABS) {
         return state.merge({
             category: fromJS(action.data),
@@ -16,6 +15,12 @@ const reducer = (state = defauleState, action) => {
     if (action.type === types.CATEGORY_GOODS_ITEM) {
         return state.merge({
             goodsItem: fromJS(action.data),
+        });
+    }
+
+    if (action.type === types.CATEGORY_GOODS_CLEAR) {
+        return state.merge({
+            goodsItem: [],
         });
     }
     return state

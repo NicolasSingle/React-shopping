@@ -13,11 +13,16 @@ const _categoryGoodsItem = data => ({
 })
 
 
-
+// 获取tab栏
 export const getCategory = that => {
     // const state = store.getState()
     // const data = state.getIn(['home', 'recommend'])
     return async dispatch => {
+        // 每次点击之前先清空
+        dispatch({
+            type: types.CATEGORY_GOODS_CLEAR,
+        })
+        // 然后再请求数据
         const data = await Api.recommend()
         if (data.code == 10000) {
             dispatch(_category(data.data.category))
@@ -41,3 +46,4 @@ export const getGoodsList = mallSubId => {
     }
 
 }
+
