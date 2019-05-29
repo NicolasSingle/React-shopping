@@ -28,7 +28,7 @@
 
 ##### 3：进入 react 目录，在此目录下打开cmd窗口运行 npm i 安装依赖,然后 npm run dev 启动项目
 
-##### 4：浏览器打开 http://localhost:3000 
+##### 4：浏览器打开 http://localhost:8010 
 
 ##### 5：项目所用到的接口在react文件夹下src目录的api文件夹里面
 
