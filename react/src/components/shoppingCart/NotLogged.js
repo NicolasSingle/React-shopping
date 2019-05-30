@@ -8,7 +8,7 @@ class NotLogged extends Component {
     render() {
         return (
             <div className='not-logged'>
-                <div className='shop'><img src={shop} /></div>
+                <div className='shop'><img src={shop} alt=''/></div>
                 <p className="desc">请先登录噢~~</p>
                 <p className="desc2" onClick={this.goLogin}>去登录</p>
             </div>

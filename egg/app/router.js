@@ -10,6 +10,6 @@ module.exports = app => {
     // 商品展示相关
     router.get('/recommend', controller.api.goods.recommend);               // 首页商品展示
     router.get('/classification', controller.api.goods.classification);     // 商品分类查询
-    // router.get('/goods/one', controller.api.goods.goodsOne);                // 单个商品查询
+    router.get('/goods/one', controller.api.goods.goodsOne);                // 单个商品查询
     // router.post('/search', controller.api.goods.search);                    // 搜索
 };
