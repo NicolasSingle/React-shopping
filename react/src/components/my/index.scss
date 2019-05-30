@@ -1,0 +1,89 @@
+.user {
+    width: 100%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    background: #e30c7b;
+    padding: 10% 0;
+    box-sizing: border-box;
+    position: relative;
+
+    img {
+        width: 18.667vw;
+        height: 18.667vw;
+        border-radius: 50%;
+    }
+
+    p {
+        color: #fff;
+        font-size: 3.733vw;
+        margin-top: 5.333vw;
+    }
+}
+
+// user-links
+.user-links {
+    padding: 4vw 0;
+    font-size: 3.733vw;
+    text-align: center;
+    background-color: #fff;
+    display: flex;
+
+    div {
+        position: relative;
+        width: 20%;
+
+        i {
+            display: block;
+            font-size: 5.4vw;
+            margin-bottom: 2.667vw;
+            color: #999;
+        }
+
+        span {
+            font-size: 14px;
+            color: #999;
+        }
+    }
+}
+
+.cell {
+    margin-top: 20px;
+    div {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        box-sizing: border-box;
+        position: relative;
+        background-color: #fff;
+        color: #333;
+        font-size: 3.733vw;
+        overflow: hidden;
+        align-items: center;
+        padding:8px 15px;
+       
+        i {
+            font-size: 4.267vw;
+            margin-right: 3.333vw;
+            color: #666;
+        }
+
+        span {
+            flex: 1;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .right {
+            color: #999;
+            font-size: 5vw;
+            line-height: 9.333vw;
+            color: #666;
+            margin-left: 1.333vw;
+        }
+    }
+}
