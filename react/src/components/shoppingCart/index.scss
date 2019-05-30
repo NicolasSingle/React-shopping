@@ -1,0 +1,140 @@
+// 未登录显示
+.not-logged {
+    width: 100%;
+    padding-top: 5.333vw;
+
+    .shop {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        background: #f2f2f2;
+        flex-direction: column;
+        justify-content: center;
+        background: #f6f6f6;
+        width: 33.333vw;
+        height: 33.333vw;
+        border-radius: 50%;
+        text-align: center;
+        margin: auto;
+        position: relative;
+
+        img {
+            width: 70%;
+            margin: 0 auto;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+    }
+
+    .desc {
+        text-align: center;
+        margin-top: 6.667vw;
+        font-size: 4.267vw;
+        color: #666;
+    }
+
+    .desc2 {
+        height: 10.667vw;
+        width: 40vw;
+        border: 1px solid #000;
+        border-radius: 6.667vw;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4.533vw;
+        margin: 9.333vw auto 0;
+    }
+}
+
+// 已经登录显示
+.logged {
+    .goods-item2 {
+        display: flex;
+        align-items: center;
+        height: 24vw;
+        padding-bottom: 2.667vw;
+        margin-top: 2.667vw;
+        padding: 0 2.667vw 3vw 2.667vw;
+        .select {
+            width: 10.667vw;
+            flex: 0 0 10.667vw;
+
+            input {
+                -webkit-appearance: none;
+                vertical-align: middle;
+                margin-top: 0;
+                background: #fff;
+                border: 1px solid #999;
+                border-radius: .8vw;
+                height: 5.333vw;
+                width: 5.333vw;
+                outline: 0 none;
+            }
+            input[type=checkbox]:checked {
+                background: #e0322b;
+                position: relative;
+            }
+            input[type=checkbox]:checked:after {
+                content: "";
+                top: 15%;
+                left: 50%;
+                position: absolute;
+                background: transparent;
+                border: .533vw solid #fff;
+                border-top: none;
+                border-right: none;
+                height: 1.6vw;
+                width: 2.667vw;
+                transform: rotate(-45deg) translate(-50%,-50%);
+
+            }
+        }
+
+        .pictures {
+            width: 21.333vw;
+            flex: 0 0 21.333vw;
+            padding: 1px;
+            box-sizing: border-box;
+            position: relative;
+
+            img {
+                width: 100%;
+            }
+        }
+
+        .trade-warp {
+            flex: 1;
+            height: 26.667vw;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            padding: 0 1.333vw 0 4vw;
+            box-sizing: border-box;
+
+            .trade-name {
+                font-size: 3.733vw;
+                color: #e0322b;
+            }
+
+            div {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                padding: 0 5.333vw 0 0;
+
+                .price {
+                    font-size: 4.267vw;
+                    color: #e0322b;
+
+                    span {
+                        font-size: 3.733vw;
+                    }
+                }
+            }
+        }
+    }
+}
