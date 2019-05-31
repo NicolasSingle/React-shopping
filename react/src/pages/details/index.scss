@@ -1,7 +1,9 @@
+@import '~css/mixin';
+
 .details {
+    @include scroll(0 ,55px,0);
     .banner {
         height: 400px;
-
         img {
             width: 100%;
             height: 100%;

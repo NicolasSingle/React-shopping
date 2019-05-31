@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 // import Lazyimg from 'react-lazyimg-component';
+import { withRouter } from 'react-router-dom'
 class HotGoods extends Component {
     render() {
         return (
@@ -9,7 +10,7 @@ class HotGoods extends Component {
                     {
                         this.props.hotGoodsList.map(item => {
                             return (
-                                <li className='border-top' key={item.get('goodsId')}>
+                                <li className='border-top' key={item.get('goodsId')} onClick={() => this.details(item.get('goodsId'))}>
                                     <img src={item.get('image')} alt='' />
                                     {/* <Lazyimg className="lazy" src={'http://zhansingsong.github.io/lazyimg/22.4582fc71.jpg'}  /> */}
                                     <p className='name'>{item.get('name')}</p>
@@ -25,12 +26,15 @@ class HotGoods extends Component {
 
                 </ul>
             </div>
+        )
+    }
 
-        );
+    details = id => {
+        this.props.history.push({ pathname: '/details/' + id })
     }
 }
 
 HotGoods.defaultProps = {
     hotGoodsList: [],
 };
-export default HotGoods;
+export default withRouter(HotGoods)

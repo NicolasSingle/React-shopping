@@ -7,6 +7,8 @@
     left: 0;
     right: 0;
     z-index: 100;
+    background: #fff;
+    z-index: 1;
     div {
         height: 55px;
         display: flex;
@@ -57,4 +59,17 @@
     .immediately2 {
         background: #f44;
     }
+}
+.contenta {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    font-size: 0;
+    img {
+        width: 100%;
+        display: block;
+    }
+}
+.contenta-left {
+    min-height: 80vw;
 }

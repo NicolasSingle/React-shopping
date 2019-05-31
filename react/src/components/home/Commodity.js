@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Swipers from 'swiper/dist/js/swiper.js'
-
+import { withRouter } from 'react-router-dom'
 class Commodity extends Component {
     render() {
         new Swipers('.swiper-container1', {
@@ -17,7 +17,7 @@ class Commodity extends Component {
                         {
                             this.props.goodItem.map(item => {
                                 return (
-                                    <div className="swiper-slide border-right" key={item.get('goodsId')}>
+                                    <div className="swiper-slide border-right" key={item.get('goodsId')} onClick={() => this.details(item.get('goodsId'))}>
                                         <div className='recommend-item'>
                                             <img src={item.get('image')} alt='' />
                                             <p className='name'>{item.get('goodsName')}</p>
@@ -28,7 +28,7 @@ class Commodity extends Component {
                                             </p>
                                             <div className='item'>
                                                 <div className='left'><i className="fa fa-shopping-cart" aria-hidden="true"></i></div>
-                                                <div className='right'>查看详情</div>
+                                                <div className='right' onClick={() => this.details(item.get('goodsId'))}>查看详情</div>
                                             </div>
                                         </div>
                                     </div>
@@ -39,12 +39,16 @@ class Commodity extends Component {
                 </div>
 
             </div>
-        );
+        )
+    }
+
+    details = id => {
+        this.props.history.push({ pathname: '/details/' + id })
     }
 }
 Commodity.defaultProps = {
     goodItem: []
 };
 
-export default Commodity;
+export default withRouter(Commodity)
 

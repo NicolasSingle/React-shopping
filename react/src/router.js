@@ -28,7 +28,7 @@ const Homes = [
     { path: "/category", name: "Category", component: Category, },
     { path: "/shoppingCart", name: "ShoppingCart", component: ShoppingCart, },
     { path: "/my", name: "My", component: My, },
-    { path: "/details", name: "Details", component: Details, },
+    { path: "/details/:id", name: "Details", component: Details, },
     { path: "/", name: "Home", component: Home, },
 
 ]

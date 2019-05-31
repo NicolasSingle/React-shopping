@@ -50,6 +50,43 @@
 
 // 已经登录显示
 .logged {
+    .count {
+        justify-content: space-between;
+        padding-bottom: 0!important;
+        .conut-pic {
+            margin-right: 15px;
+
+            .order-ok {
+                margin-top: 10px;
+            }
+        }
+    }
+
+    .confirm {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+        flex-direction: row;
+        -webkit-box-pack: end;
+        -ms-flex-pack: end;
+        justify-content: flex-end;
+        margin-top: 2vw;
+        margin-bottom:5vw;
+        div {
+            background: #e6057f;
+            color: #fff;
+            height: 9.333vw;
+            padding: 0 4vw;
+            font-size: 3.733vw;
+            margin-right: 1.333vw;
+            line-height: 9.333vw;
+            border-radius: .533vw;
+        }
+    }
+
     .goods-item2 {
         display: flex;
         align-items: center;
@@ -57,6 +94,7 @@
         padding-bottom: 2.667vw;
         margin-top: 2.667vw;
         padding: 0 2.667vw 3vw 2.667vw;
+
         .select {
             width: 10.667vw;
             flex: 0 0 10.667vw;
@@ -72,10 +110,12 @@
                 width: 5.333vw;
                 outline: 0 none;
             }
+
             input[type=checkbox]:checked {
                 background: #e0322b;
                 position: relative;
             }
+
             input[type=checkbox]:checked:after {
                 content: "";
                 top: 15%;
@@ -87,7 +127,7 @@
                 border-right: none;
                 height: 1.6vw;
                 width: 2.667vw;
-                transform: rotate(-45deg) translate(-50%,-50%);
+                transform: rotate(-45deg) translate(-50%, -50%);
 
             }
         }
