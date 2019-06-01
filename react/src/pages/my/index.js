@@ -3,7 +3,6 @@ import NavFooter from 'public/NavFooter'
 import { NavBar } from 'zarm';
 import User from 'c/my/User'
 import TabItems from 'c/my/TabItems'
-
 class index extends Component {
     render() {
         return (

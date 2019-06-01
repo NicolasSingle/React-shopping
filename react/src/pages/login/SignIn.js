@@ -75,7 +75,7 @@ class SignIn extends Component {
     // 登录
     login = () => {
         if (!this.state.username || !this.state.password) {
-            return toast('请填写用户名或密码')
+            return toast('请填写用户名或密码','error')
         }
         this.props.signin(this.state.username, this.state.password, this)
     }

@@ -7,9 +7,14 @@ import * as action_fn from './store/action_fn'
 import Scroll from 'public/Scroll'
 class Details extends Component {
     page = 1
-
+    state = {
+        isCollection: 0,
+    }
+    id = ''
     componentDidMount() {
-        this.props.goodsDetails(this.props.match.params.id, this.page)
+        this.id = this.props.match.params.id
+        this.props.goodsDetails(this.id, this.page)
+        this.props.isCollectionFn(this.id, this)
     }
     render() {
         const { goods_details } = this.props
@@ -28,13 +33,16 @@ class Details extends Component {
                         <div className='goods-express border-topbottom'>
                             <span>运费：0</span>
                             <span>剩余：10000</span>
-                            <span>收藏：<i className="fa fa-heart-o" aria-hidden="true"></i></span>
+                            <span>
+                                收藏：
+                                <i style={{ color: `${this.state.isCollection != 0 ? 'red' : ''}` }} className={`fa  ${this.state.isCollection == 0 ? 'fa-heart-o' : 'fa-heart'}`} onClick={() => this.collection(this.id)} aria-hidden="true"></i>
+                            </span>
                         </div>
                         <Tabs />
 
                     </Scroll>
                 </div>
-                <GoodsSku id={goods_details.getIn(['goodsOne', 'id'])}/>
+                <GoodsSku id={goods_details.getIn(['goodsOne', 'id'])} />
             </div>
 
         )
@@ -42,11 +50,16 @@ class Details extends Component {
 
     goBack = () => {
         this.props.history.goBack()
-        
+
     }
 
     onPullup = that => {
         that.refresh()
+    }
+
+    // 点击收藏
+    collection = id => {
+        this.props.collection(id, this)
     }
 }
 
@@ -57,6 +70,14 @@ const mapGetters = state => ({
 const mapActions = dispatch => ({
     goodsDetails(id, page) {
         dispatch(action_fn.getGoodsDetails(id, page))
+    },
+
+    isCollectionFn(id, that) {
+        dispatch(action_fn.isCollection(id, that))
+    },
+
+    collection(id, that) {
+        dispatch(action_fn.collection(id, that))
     }
 })
 

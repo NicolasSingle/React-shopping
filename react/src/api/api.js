@@ -7,8 +7,15 @@ export default {
     recommend: ajax('/recommend', 'get'),  // 首页商品查询
     classification: ajax('/classification', 'get'),  // 分类页商品
     goodsDetails: ajax(`/goods/one`, 'get'),      //  获取商品详情
-    addShop: ajax(`/addShop`,'post',false),  // 加入购物车
+    addShop: ajax(`/addShop`, 'post', false),  // 加入购物车
     getCard: ajax('/getCard'),  // 查询购物车
-    editCart: ajax(`/editCart`,'post',false), // 购物车增加减少
+    editCart: ajax(`/editCart`, 'post', false), // 购物车增加减少
     deleteShop: ajax(`/deleteShop`), // 购物车删除
+    isCollection: ajax(`/isCollection`, 'post', false), // 查询商品收藏
+    collection: ajax('/collection', 'post', false),// 商品收藏
+    cancelCollection: ajax('/cancelCollection', 'post', false),// 商品取消收藏
+    getCollectionList: ajax('/collection/list', 'get')// 查询我的收藏
+
+
+
 }

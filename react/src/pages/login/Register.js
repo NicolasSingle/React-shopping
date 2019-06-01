@@ -55,11 +55,11 @@ class Register extends Component {
     register = async () => {
         const state = this.state
         if (!state.username || !state.password || !state.email) {
-            return toast('请填写完整信息')
+            return toast('请填写完整信息','error')
         }
         const reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
         if (!reg.test(state.email)) {
-            return toast('邮箱格式错误')
+            return toast('邮箱格式错误','error')
         }
         // 注册
         this.props.register(state,this)

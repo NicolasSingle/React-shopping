@@ -63,6 +63,36 @@ class operatingGoods extends BaseController {
         await ctx.model.ShopList.deleteMany({ userName: this.ctx.userName, cid: data })
         this.success('删除成功')
     }
+
+    // 收藏商品
+    async collection() {
+        const { id } = this.ctx.request.body
+        if (!id) {
+            return this.error('缺少重要参数id')
+
+        }
+        let goods = await this.ctx.model.Goods.findOne({ id })
+        let collection = new this.ctx.model.Collection({
+            userName: this.ctx.userName,
+            cid: goods.id,
+            image_path: goods.image_path,
+            name: goods.name,
+            present_price: goods.present_price,
+            add_time: +new Date()
+        })
+        await collection.save()
+        this.success('收藏成功')
+    }
+
+    // 取消收藏
+    async cancelCollection() {
+        const { id } = this.ctx.request.body
+        if (!id) {
+            return this.error('缺少重要参数id')
+        }
+        await this.ctx.model.Collection.deleteOne({ userName: this.ctx.userName, cid: id })
+        this.success('取消收藏成功')
+    }
 }
 
 module.exports = operatingGoods;

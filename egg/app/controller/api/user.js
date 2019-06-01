@@ -88,6 +88,30 @@ class UserController extends BaseController {
 
     }
 
+    // 查询商品是否已经收藏
+    async isCollection() {
+        const { ctx } = this
+        const { id } = this.ctx.request.body    // 商品id
+        const result = await ctx.model.Collection.findOne({ cid: id, userName: this.ctx.userName })
+        if (!result) {  // 未收藏
+            this.success('查询成功', { isCollection: 0 })
+        } else {  // 已经收藏
+            this.success('查询成功', { isCollection: 1 })
+        }
+    }
+
+    // 查询收藏的商品
+    async collectionList() {
+        const { ctx } = this
+        let pageSize = 10
+        let page = ctx.query.page || 1
+        let skip = (page - 1) * pageSize
+        const list = await ctx.model.Collection.find({ userName: ctx.userName }).sort({ 'add_time': -1 }).skip(skip).limit(pageSize)
+        const count = await ctx.model.Collection.find({ userName: ctx.userName }).countDocuments()
+        this.success('查询成功', { count, list, page })
+
+    }
+
 }
 
 

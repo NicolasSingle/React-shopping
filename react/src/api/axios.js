@@ -38,6 +38,9 @@ axios.interceptors.response.use(
                 localStorage.clear()
                 isShowLoading(true,'none')    // 隐藏loading
                 window.location.href = '/#/login'
+            } else if(error.response.status == 504) {
+                isShowLoading(true,'none')    // 隐藏loading
+                toast('服务器超时','error')
             }
         }
         return Promise.reject(error.response.data)   // 返回接口返回的错误信息
@@ -66,7 +69,7 @@ export default (url, type = 'post', isShowLoadings = true) => {
             }
             // 错误物理请求处理
         }).catch(err => {
-            toast('服务器超时')
+            toast('服务器超时','error')
             return Promise.reject(err)   // 返回接口返回的错误信息
         })
     }

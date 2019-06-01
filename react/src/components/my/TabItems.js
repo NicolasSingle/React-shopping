@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import { withRouter } from 'react-router-dom'
 class TabItems extends Component {
     render() {
         const tabs = [
@@ -11,7 +11,7 @@ class TabItems extends Component {
         ]
         const cell = [
             { id: 1, icon: "fa fa-navicon", title: "全部订单" },
-            { id: 2, icon: "fa fa-star-o", title: "收藏商品" },
+            { id: 2, icon: "fa fa-star-o", title: "收藏商品", path: '/collection' },
             { id: 3, icon: "fa fa-rocket", title: "地址管理" },
             { id: 4, icon: "fa fa-eye", title: "最近浏览" }
         ]
@@ -33,7 +33,7 @@ class TabItems extends Component {
                     {
                         cell.map(item => {
                             return (
-                                <div key={item.id} className='border-bottom'>
+                                <div key={item.id} className='border-bottom' onClick={() => this.props.history.push(item.path)}>
                                     <i className={item.icon} aria-hidden="true"></i>
                                     <span>{item.title}</span>
                                     <i className="fa fa-angle-right right" aria-hidden="true"></i>
@@ -48,4 +48,4 @@ class TabItems extends Component {
     }
 }
 
-export default TabItems;
+export default withRouter(TabItems)

@@ -48,11 +48,11 @@ class RestorePassword extends Component {
     restorePassword = async () => {
         const state = this.state
         if (!state.password || !state.email) {
-            return toast('请填写完整信息')
+            return toast('请填写完整信息','error')
         }
         const reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
         if (!reg.test(state.email)) {
-            return toast('邮箱格式错误')
+            return toast('邮箱格式错误','error')
         }
         this.props.restorePassword(state,this)
 

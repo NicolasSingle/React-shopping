@@ -12,6 +12,8 @@ import SignIn from 'pages/login/SignIn'     //登录
 import Register from 'pages/login/Register'     //注册
 import RestorePassword from 'pages/login/RestorePassword'     //还原密码
 import Details from 'pages/details'     //商品详情
+import Collection from 'pages/collection'     //我的收藏
+
 
 // import Main from './Main'
 import './index.scss'
@@ -29,6 +31,7 @@ const Homes = [
     { path: "/shoppingCart", name: "ShoppingCart", component: ShoppingCart, },
     { path: "/my", name: "My", component: My, },
     { path: "/details/:id", name: "Details", component: Details, },
+    { path: "/collection", name: "Collection", component: Collection, },
     { path: "/", name: "Home", component: Home, },
 
 ]

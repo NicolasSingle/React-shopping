@@ -17,7 +17,7 @@ const changeRestorePassword = () => ({
 
 
 const _login_fn = (data, that) => {
-    toast(data.msg, 'right-round')
+    toast(data.msg)
     localStorage.setItem('token', data.data)
     setTimeout(() => {
         that.props.history.push('/home');
@@ -52,7 +52,7 @@ export const restorePassword = (state, that) => {
     return async dispatch => {
         const data = await Api.restorePassword(state)
         if (data.code == 10000) {
-            toast(data.msg,'right-round')
+            toast(data.msg)
             setTimeout(() => {
                 that.props.history.push('/login/index');
             }, 1000);
