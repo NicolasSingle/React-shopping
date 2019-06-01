@@ -1,0 +1,5 @@
+@import '~css/mixin';
+
+.shopping-cart {
+    @include scroll(49px, 50px, 0);
+}

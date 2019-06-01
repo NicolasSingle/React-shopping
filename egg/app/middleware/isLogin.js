@@ -8,17 +8,23 @@ module.exports = function (opt, app) {
             // 获取token
             const token = ctx.header.authorization
             if (!token) {
+                console.log(1);
+                
                 beOverdue(ctx)
             } else {
                 try {
                     let payload = await app.jwt.verify(token, app.config.secret)
                     if (payload) {
+                        ctx.userName = payload
                         await next()
                     } else {
+                        console.log(2);
+                        
                         beOverdue(ctx)
                     }
                 } catch (error) {
-                    beOverdue(ctx)
+                    console.log(error);
+                    // beOverdue(ctx)
                 }
             }
         }

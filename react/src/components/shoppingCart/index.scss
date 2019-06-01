@@ -53,9 +53,16 @@
     .count {
         justify-content: space-between;
         padding-bottom: 0!important;
+        margin-top: 0!important;
         .conut-pic {
             margin-right: 15px;
-
+            p {
+                .pic {
+                    color: #e0322b;
+                    font-weight: 700;
+                }
+            }
+            
             .order-ok {
                 margin-top: 10px;
             }
@@ -177,4 +184,8 @@
             }
         }
     }
+}
+
+.logged input:disabled {
+    background-color:#fff;
 }

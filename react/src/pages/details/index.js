@@ -34,7 +34,7 @@ class Details extends Component {
 
                     </Scroll>
                 </div>
-                <GoodsSku />
+                <GoodsSku id={goods_details.getIn(['goodsOne', 'id'])}/>
             </div>
 
         )

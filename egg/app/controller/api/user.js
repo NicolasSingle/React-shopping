@@ -46,7 +46,7 @@ class UserController extends BaseController {
         let data2 = await ctx.model.User.findOne({ email })
         if (!data && !data2) {
             password = md5(password)
-            let user = await new ctx.model.User({username,password,email})
+            let user = await new ctx.model.User({ username, password, email })
             await user.save()
             // Token
             const token = await this.service.token.setToken(user.username)
@@ -76,7 +76,17 @@ class UserController extends BaseController {
         }
     }
 
+    // 查询购物车
+    async getCard() {
+        const { ctx } = this
+        const res = await ctx.model.ShopList.find({ userName: this.ctx.userName }).sort({ 'add_time': -1 })
+        if (res) {
+            this.success('查询成功', res)
+        } else {
+            this.error('查询失败')
+        }
 
+    }
 
 }
 

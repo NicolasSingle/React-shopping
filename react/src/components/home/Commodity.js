@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Swipers from 'swiper/dist/js/swiper.js'
 import { withRouter } from 'react-router-dom'
+import { addShop } from 'js/utils'
 class Commodity extends Component {
     render() {
         new Swipers('.swiper-container1', {
@@ -27,7 +28,7 @@ class Commodity extends Component {
                                                 <span className='price-min'>￥{item.get('price')}</span>
                                             </p>
                                             <div className='item'>
-                                                <div className='left'><i className="fa fa-shopping-cart" aria-hidden="true"></i></div>
+                                                <div className='left' onClick={(e) => this.addShop(e, item.get('goodsId'))}><i className="fa fa-shopping-cart" aria-hidden="true"></i></div>
                                                 <div className='right' onClick={() => this.details(item.get('goodsId'))}>查看详情</div>
                                             </div>
                                         </div>
@@ -44,6 +45,12 @@ class Commodity extends Component {
 
     details = id => {
         this.props.history.push({ pathname: '/details/' + id })
+    }
+
+    // 加入购物车
+    addShop = (e, id) => {
+        e.stopPropagation();
+        addShop(id)
     }
 }
 Commodity.defaultProps = {

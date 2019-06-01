@@ -12,4 +12,12 @@ module.exports = app => {
     router.get('/classification', controller.api.goods.classification);     // 商品分类查询
     router.get('/goods/one', controller.api.goods.goodsOne);                // 单个商品查询
     // router.post('/search', controller.api.goods.search);                    // 搜索
-};
+    router.post('/getCard', controller.api.user.getCard);                  // 查询是购物车
+
+
+    router.post('/addShop', controller.api.operatingGoods.addShop);                     // 加入购物车
+    router.post('/editCart', controller.api.operatingGoods.editCart);                     // 购物车增加减少
+    router.post('/deleteShop', controller.api.operatingGoods.deleteShop);                     // 购物车删除
+
+
+}
