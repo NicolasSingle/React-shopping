@@ -17,7 +17,7 @@ class Logged extends Component {
     state = {
         checkedAll: false,//全选状态
         checkFlag: false, // 是否有商品处于选中状态
-        totalPrice: 0,   // 总价格
+        totalPrice: 0.00,   // 总价格
         list: [],
         confirm: false
     }
@@ -104,7 +104,7 @@ class Logged extends Component {
             this.setState(prev => ({
                 list: prev.list.map(item => ({ ...item, check: false })),
                 checkFlag: false,
-                totalPrice: 0
+                totalPrice: 0.00
             }))
             this.selectAll = []
         }
@@ -160,9 +160,11 @@ class Logged extends Component {
                     arr[index].count = count
                 }
             })
+            let selectAll = arr.filter(v => v.check == true)
+            console.log(selectAll);
             this.setState(prev => ({
                 list: arr,
-                totalPrice: this.totalPriceFn(arr)
+                totalPrice: this.totalPriceFn(selectAll)
             }))
         }
     }

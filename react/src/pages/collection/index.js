@@ -22,13 +22,12 @@ class Collection extends Component {
                 <NavHeader goBack={this.goBack} icon={true} title='我的收藏' />
                 <div className=' border-top'>
                     <div className='collection'>
-                        <Scroll pullup={true} onPullup={this.onPullup}>
+                        <Scroll pullup={true} onRef={this.onRef} isToelement={true} onPullup={this.onPullup}>
                             {
                                 this.state.list.map(item => {
                                     return <GoodsItem isCollection={true} key={item.get('_id')} goodsItem={item} deleteItem={this.deleteItem} />
                                 })
                             }
-
                         </Scroll>
                     </div>
                 </div>
@@ -42,14 +41,20 @@ class Collection extends Component {
     }
 
     getCollectionList = async (flag) => {
+        console.log(this.props.isLocked());
+
         if (this.props.isLocked()) return // 必须等待上一次请求完成
         this.props.locked()//开始请求之前锁住
         const data = await Api.getCollectionList({ page: this.page })
         if (data.code == 10000) {
             this.props.setTotal(data.data.count)  // 总条数
             this.props.unLocked() // 解锁
-            if (flag) {
+
+            if (flag && data.data.list.length) {
                 this.props.setNewData(data.data.list)
+                setTimeout(() => {
+                    this.child.refresh()
+                }, 200);
             } else {
                 this.props.dataArr.push(...data.data.list)
             }
@@ -68,13 +73,17 @@ class Collection extends Component {
     }
 
     // 分页
-    onPullup = () => {
+    onPullup = that => {
         if (this.props.dataArr.length >= 10) {
-            if (this.props.hasMore()) {
+            if (this.props.hasMore() && !this.props.isLocked()) {
                 this.page++
                 this.getCollectionList(true)
-            } 
+            }
         }
+    }
+
+    onRef = (ref) => {
+        this.child = ref
     }
 }
 

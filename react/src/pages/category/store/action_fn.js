@@ -1,6 +1,5 @@
 import * as types from './action_types'
 import Api from 'api/api'
-import store from '@/store'
 import { fromJS } from 'immutable'
 const _category = data => ({
     type: types.CATEGORY_TABS,
@@ -14,7 +13,9 @@ const _categoryGoodsItem = data => ({
 
 
 // 获取tab栏
-export const getCategory = that => {
+export const getCategory = (that, id = null) => {
+    console.log(id);
+    
     // const state = store.getState()
     // const data = state.getIn(['home', 'recommend'])
     return async dispatch => {
@@ -31,7 +32,7 @@ export const getCategory = that => {
             }))
             const defaultId = data.data.category[0].bxMallSubDto[0].mallSubId
             // 请求默认分类数据
-            getGoodsList(defaultId)(dispatch)
+            getGoodsList(id && id || defaultId)(dispatch)
         }
     }
 }

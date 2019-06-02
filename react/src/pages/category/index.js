@@ -14,7 +14,12 @@ class Category extends Component {
         defaultValue: 0,
     }
     componentDidMount() {
-        this.props.getCategory(this)
+        const id = this.props.location.query && this.props.location.query.id || null
+        const index = this.props.location.query && this.props.location.query.index || 0
+        this.setState(prev => ({
+            leftTabIndex: index
+        }))
+        this.props.getCategory(this, id)
         let ele = document.querySelector('.tab-title')
         ele.style.width = (21.333 * 4) + 'vw'
     }
@@ -70,7 +75,7 @@ class Category extends Component {
             rightTabIndex: 0,
         }))
         this.getEle(val.get('bxMallSubDto').size)
-        this.child.scrollTo(0,0,300)    // 调用子组件方法
+        this.child.scrollTo(0, 0, 300)    // 调用子组件方法
     }
 
     onRef = (ref) => {
@@ -117,8 +122,8 @@ const mapGetters = state => ({
 })
 
 const mapActions = dispatch => ({
-    getCategory(that) {
-        dispatch(action_fn.getCategory(that))
+    getCategory(that, id) {
+        dispatch(action_fn.getCategory(that, id))
     },
 
     getGoodsList(id) {

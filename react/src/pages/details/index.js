@@ -34,7 +34,8 @@ class Details extends Component {
                             <span>运费：0</span>
                             <span>剩余：10000</span>
                             <span>
-                                收藏：
+                                {this.state.isCollection == 0 ? '收藏：' : '取消收藏  '}
+
                                 <i style={{ color: `${this.state.isCollection != 0 ? 'red' : ''}` }} className={`fa  ${this.state.isCollection == 0 ? 'fa-heart-o' : 'fa-heart'}`} onClick={() => this.collection(this.id)} aria-hidden="true"></i>
                             </span>
                         </div>

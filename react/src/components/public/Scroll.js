@@ -46,6 +46,7 @@ class Scroll extends Component {
         // 上拉加载
         if (this.props.pullup) {
             this.scroll.on("scrollEnd", () => {
+                
                 if (this.scroll.y <= this.scroll.maxScrollY + 50) {
                     this.props.onPullup(this)
                 }

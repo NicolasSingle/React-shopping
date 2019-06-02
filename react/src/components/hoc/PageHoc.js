@@ -63,8 +63,6 @@ const PageHoc = WrappedComponent => {
 
         // 锁的机制
         isLocked = () => {
-            console.log(this.state.loading );
-            
             return this.state.loading ? true : false
         }
 
