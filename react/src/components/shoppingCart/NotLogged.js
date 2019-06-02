@@ -12,11 +12,11 @@ class NotLogged extends Component {
                 
                 <p className="desc">
                 {
-                    !localStorage.getItem('token') ? '请先登录噢~~': '暂无商品~~'
+                    !localStorage.getItem('token')&&!localStorage.getItem('username') ? '请先登录噢~~': '暂无商品~~'
                 }
                 </p>
                 {
-                    !localStorage.getItem('token') ? <p className="desc2" onClick={this.goLogin}>去登录</p>: <p className="desc2" onClick={this.goHome}>去购物</p>
+                    !localStorage.getItem('token')&&!localStorage.getItem('username') ? <p className="desc2" onClick={this.goLogin}>去登录</p>: <p className="desc2" onClick={this.goHome}>去购物</p>
                 }
                 
             </div>

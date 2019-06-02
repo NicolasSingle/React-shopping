@@ -64,7 +64,7 @@ export default (url, type = 'post', isShowLoadings = true) => {
                 localStorage.clear()
                 isShowLoading(isShowLoadings,'none')    // 隐藏loading
             } else if (data.code == 10002) {    // 接口其他提示信息
-                toast(data.msg)
+                toast(data.msg,'error')
                 return data
             }
             // 错误物理请求处理

@@ -10,7 +10,10 @@
     padding: 10% 0;
     box-sizing: border-box;
     position: relative;
-
+    span{
+        display: block;
+        margin-bottom: 10px;
+    }
     img {
         width: 18.667vw;
         height: 18.667vw;
@@ -26,7 +29,6 @@
 
 // user-links
 .user-links {
-    padding: 4vw 0;
     font-size: 3.733vw;
     text-align: center;
     background-color: #fff;
@@ -34,7 +36,8 @@
 
     div {
         position: relative;
-        width: 20%;
+        width: 50%;
+        padding: 4vw 0;
 
         i {
             display: block;
@@ -51,7 +54,6 @@
 }
 
 .cell {
-    margin-top: 20px;
     div {
         width: 100%;
         display: -webkit-box;

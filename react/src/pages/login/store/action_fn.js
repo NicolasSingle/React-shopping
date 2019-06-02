@@ -17,7 +17,7 @@ const changeRestorePassword = () => ({
 
 
 const _login_fn = (data, that) => {
-    toast(data.msg)
+    toast(data.msg, data.code == 10002 ? 'error' : null)
     localStorage.setItem('token', data.data)
     setTimeout(() => {
         that.props.history.push('/home');
@@ -31,16 +31,19 @@ export const signin = (username, password, that) => {
             username, password
         })
         if (data.code == 10000) {
+            localStorage.setItem('username', that.state.username)
             _login_fn(data, that)
-        }
+        } 
     }
 }
 
 // 注册
 export const register = (state, that) => {
+    
     return async dispatch => {
         const data = await Api.register(state)
         if (data.code == 10000) {
+            localStorage.setItem('username', state.username)
             _login_fn(data, that)
         }
     }
