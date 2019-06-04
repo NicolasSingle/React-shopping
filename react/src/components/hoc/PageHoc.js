@@ -21,6 +21,7 @@ const PageHoc = WrappedComponent => {
                 isLocked: this.isLocked,
                 locked: this.locked,
                 unLocked: this.unLocked,
+                clearArr: this.clearArr
             }
             return <WrappedComponent {...props} />
         }
@@ -54,12 +55,12 @@ const PageHoc = WrappedComponent => {
         }
 
         // 清空数组
-        // clearArr = () => {
-        //     this.setData({
-        //         dataArr: []
-        //     })
-        //     this.total = null
-        // }
+        clearArr = () => {
+            this.setState({
+                dataArr: [],
+                total: null
+            })
+        }
 
         // 锁的机制
         isLocked = () => {

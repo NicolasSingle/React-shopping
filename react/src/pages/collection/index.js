@@ -16,7 +16,6 @@ class Collection extends Component {
         this.getCollectionList()
     }
     render() {
-        const list = fromJS(this.props.dataArr)
         return (
             <div>
                 <NavHeader goBack={this.goBack} icon={true} title='我的收藏' />
@@ -68,12 +67,15 @@ class Collection extends Component {
     deleteItem = async id => {
         const data = await Api.cancelCollection({ id })
         if (data.code == 10000) {
+            this.page = 1
+            this.props.clearArr()
+            this.child.scrollTo(0,0,300)
             this.getCollectionList()
         }
     }
 
     // 分页
-    onPullup = that => {
+    onPullup = () => {
         if (this.props.dataArr.length >= 10) {
             if (this.props.hasMore() && !this.props.isLocked()) {
                 this.page++
