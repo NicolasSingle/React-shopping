@@ -37,12 +37,12 @@
 - [x] 商城首页
 - [x] 商品分类页
 - [x] 登录 / 注册 / 找回密码
-- [ ] 个人中心
-- [ ] 商品详情
+- [x] 个人中心
+- [x] 商品详情
+- [x] 我的商品收藏
+- [x] 购物车
 - [ ] 地址管理
 - [ ] 最近浏览
-- [ ] 我的商品收藏
-- [ ] 购物车
 - [ ] 支付页面
 - [ ] 全部订单
 
@@ -51,11 +51,11 @@
 - [x] 商城首页板块的查询与展示
 - [x] 商品各种分类数据查询与展示
 - [x] 注册 / 登录 / 找回密码
-- [ ] 商品详情展示
-- [ ] 商品收藏和取消收藏，写入数据库
+- [x] 商品详情展示
+- [x] 商品收藏和取消收藏，写入数据库
+- [x] 加入购物车
 - [ ] 个人地址增加修改和删除,设置默认地址等，写入数据库
 - [ ] 最近浏览，最多30条，本地缓存
-- [ ] 加入购物车
 - [ ] 购物车选择商品结算，数量增加、修改、删除
 - [ ] 订单的支付与查询
 - [ ] 城市选择 / 城市搜索
@@ -67,16 +67,12 @@
 ![search.png](./images/search.png)
 ![category.png](./images/category.png)
 ![shop.png](./images/shop.png)
-![caijian.png](./images/caijian.png)
 ![ment.png](./images/ment.png)
 ![pinlun2.png](./images/pinlun2.png)
 ![detail.png](./images/detail.png)
-![detailC.png](./images/detailC.png)
-![detailC1.png](./images/detailC1.png)
 ![chakan.png](./images/chakan.png)
 ![order.png](./images/order.png)
 ![my.png](./images/my.png)
-![login.png](./images/login.png)
 
 
 ### 关于前端请求接口跨域问题，
