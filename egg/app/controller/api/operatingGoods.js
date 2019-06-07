@@ -93,6 +93,98 @@ class operatingGoods extends BaseController {
         await this.ctx.model.Collection.deleteOne({ userName: this.ctx.userName, cid: id })
         this.success('取消收藏成功')
     }
+
+
+    // 保存收货地址
+    async address() {
+        const { ctx } = this
+        const data = ctx.request.body
+        if (!data) {
+            this.error('缺少重要参数')
+            return
+        }
+        if (data.isDefault == true) {   // 设置默认地址
+            await ctx.model.Address.updateMany({ userName: ctx.userName, isDefault: true }, {
+                $set: {
+                    'isDefault': false,
+                }
+            })
+        }
+
+        if (data.id) {    // 说明是更新地址
+            await ctx.model.Address.updateOne({ _id: data.id, userName: ctx.userName }, data)
+            const address = await ctx.model.Address.find({ userName: ctx.userName })
+            let flag
+            address.forEach(item => {
+                if (item.isDefault == true) {
+                    flag = item
+                }
+            })
+            if (!flag) {
+                await ctx.model.Address.findOneAndUpdate({ userName: ctx.userName, _id: address[0]._id }, {
+                    $set: {
+                        'isDefault': true
+                    }
+                })
+            }
+            this.success('修改成功')
+
+        } else {  // 新增地址
+            const datas = Object.assign(data, {
+                userName: ctx.userName,
+                add_time: +new Date()
+            })
+            const address = new ctx.model.Address(datas)
+            await address.save()
+            // 保存后查询一次
+            const addressDef = await ctx.model.Address.find({ userName: ctx.userName })
+            if (addressDef.length == 1) { // 如果数据库只有1条，设置这一条为默认地址
+                if (!addressDef[0].isDefault) {
+                    await ctx.model.Address.findOneAndUpdate({ userName: ctx.userName, _id: addressDef[0]._id }, {
+                        $set: {
+                            'isDefault': true
+                        }
+                    })
+                }
+            }
+            this.success('添加成功')
+        }
+    }
+
+    // 删除单条收货地址
+    async deleteAddress() {
+        const { ctx } = this
+        const { id } = ctx.request.body
+        if (!id) {
+            this.error('缺少重要参数id')
+            return
+        }
+        // 查询到这条地址
+        const address = await this.ctx.model.Address.findOne({ '_id': id })
+        if (address.isDefault) {    // 如果删除的是默认地址
+            const addressArr = await ctx.model.Address.find({ userName: ctx.userName })
+            // 设置第一条为默认地址
+            await ctx.model.Address.findOneAndUpdate({ userName: ctx.userName, _id: addressArr[0]._id }, {
+                $set: {
+                    'isDefault': true
+                }
+            })
+        }
+        await this.ctx.model.Address.findOneAndDelete({ '_id': id, userName: ctx.userName })
+        this.success('删除成功')
+    }
+
+    // 查询单条收货地址
+    async getOneAddress() {
+        const { ctx } = this
+        const { id } = ctx.request.body
+        if (!id) {
+            this.error('缺少重要参数id')
+            return
+        }
+        const data = await this.ctx.model.Address.findOne({ '_id': id })
+        this.success('查询成功', data)
+    }
 }
 
 module.exports = operatingGoods;

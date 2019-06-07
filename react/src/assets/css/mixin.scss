@@ -11,7 +11,7 @@
 }
 
 @mixin scroll($top,$bottom,$left) {
-    position: fixed;
+    position: fixed!important;
     top: $top;
     left: $left;
     right: 0;

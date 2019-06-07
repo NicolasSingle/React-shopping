@@ -15,12 +15,18 @@ module.exports = app => {
     router.post('/getCard', controller.api.user.getCard);                  // 查询是购物车
     router.post('/isCollection', controller.api.user.isCollection);                  // 查询是否已经收藏
     router.get('/collection/list', controller.api.user.collectionList);    // 查询收藏的商品
+    router.get('/getAddress', controller.api.user.getAddress);  // 查询收货地址
+    router.post('/getOneAddress', controller.api.operatingGoods.getOneAddress);     // 查询单条收货地址        
+
 
 
     router.post('/addShop', controller.api.operatingGoods.addShop);                     // 加入购物车
     router.post('/editCart', controller.api.operatingGoods.editCart);                     // 购物车增加减少
     router.post('/deleteShop', controller.api.operatingGoods.deleteShop);                     // 购物车删除
     router.post('/collection', controller.api.operatingGoods.collection);                     // 商品的收藏
-    router.post('/cancelCollection', controller.api.operatingGoods.cancelCollection);                     // 商品的取消收藏
+    router.post('/cancelCollection', controller.api.operatingGoods.cancelCollection);
+    router.post('/address', controller.api.operatingGoods.address);                     // 保存收货地址
+    router.post('/deleteAddress', controller.api.operatingGoods.deleteAddress);         // 删除单条收货地址      
+    router.post('/setDefaultAddress', controller.api.user.setDefaultAddress);     // 设置默认收货地址        
 
 }

@@ -9,7 +9,7 @@ class TabItems extends Component {
         const cell = [
             { id: 1, icon: "fa fa-navicon", title: "全部订单" },
             { id: 2, icon: "fa fa-star", title: "收藏商品", path: '/collection' },
-            { id: 3, icon: "fa fa-rocket", title: "地址管理" },
+            { id: 3, icon: "fa fa-rocket", title: "地址管理",path:'/addressList' },
             { id: 4, icon: "fa fa-eye", title: "最近浏览" }
         ]
         return (

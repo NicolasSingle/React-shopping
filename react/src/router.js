@@ -14,7 +14,7 @@ import RestorePassword from 'pages/login/RestorePassword'     //还原密码
 import Details from 'pages/details'     //商品详情
 import Collection from 'pages/collection'     //我的收藏
 import AddressList from 'pages/address/AddressList'     //地址列表
-import AddressEdit from 'pages/address/addressEdit'     //地址的新增与编辑
+import AddressEdit from 'pages/address/AddressEdit'     //地址的新增与编辑
 
 
 
@@ -35,7 +35,7 @@ const Homes = [
     { path: "/my", name: "My", component: My, },
     { path: "/details/:id", name: "Details", component: Details, },
     { path: "/collection", name: "Collection", component: Collection, },
-    { path: "/addressEdit", name: "AddressEdit", component: AddressEdit, },
+    { path: "/addressEdit/:id", name: "AddressEdit", component: AddressEdit, },
     { path: "/addressList", name: "AddressList", component: AddressList, },
     { path: "/", name: "Home", component: Home, },
 

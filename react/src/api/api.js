@@ -14,8 +14,12 @@ export default {
     isCollection: ajax(`/isCollection`, 'post', false), // 查询商品收藏
     collection: ajax('/collection', 'post', false),// 商品收藏
     cancelCollection: ajax('/cancelCollection', 'post', false),// 商品取消收藏
-    getCollectionList: ajax('/collection/list', 'get')// 查询我的收藏
-
+    getCollectionList: ajax('/collection/list', 'get'),// 查询我的收藏
+    setAddress: ajax('/address'),// 保存收货地址
+    getAddress: ajax('/getAddress', 'get'),// 查询收货地址
+    setDefaultAddress: ajax('/setDefaultAddress'),  // 设置默认收货地址    
+    getOneAddress: ajax('/getOneAddress'),  // 查询单条收货地址   
+    deleteAddress: ajax('/deleteAddress'),  // 删除单条收货地址   
 
 
 }

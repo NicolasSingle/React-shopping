@@ -7,8 +7,10 @@ module.exports = app => {
         userName: String,            // 用户名
         name: String,               // 收货人姓名
         tel: String,                // 电话
-        address: String,            // 详细地址
-        isDefault: Boolean,          // 是否默认,
+        isDefault: {
+            type: Boolean,
+            default: false
+        },          // 是否默认,
         area: String,                // 地区
         addressDetail: String,      // 详细地址  
         add_time: {
