@@ -5,7 +5,7 @@ import { HashRouter, Route, Switch, Redirect } from 'react-router-dom'
 import App from './App'
 import Home from 'pages/home'       //首页
 import Category from 'pages/category'       //分类
-import ShoppingCart from 'pages/shoppingCart'       //购物车
+import ShoppingCart from 'pages/shoppingCart/ShoppingCart'       //购物车
 import My from 'pages/my'       //我的
 import Login from 'pages/login'     //登录主页
 import SignIn from 'pages/login/SignIn'     //登录
@@ -15,7 +15,13 @@ import Details from 'pages/details'     //商品详情
 import Collection from 'pages/collection'     //我的收藏
 import AddressList from 'pages/address/AddressList'     //地址列表
 import AddressEdit from 'pages/address/AddressEdit'     //地址的新增与编辑
+import Browse from 'pages/browse'     //最近浏览
+import Order from 'pages/order'     //我的订单
+import PayMent from 'pages/shoppingCart/PayMent'     //订单
+import PayOk from 'pages/shoppingCart/PayOk'     //付款页面
 
+
+ 
 
 
 // import Main from './Main'
@@ -37,6 +43,11 @@ const Homes = [
     { path: "/collection", name: "Collection", component: Collection, },
     { path: "/addressEdit/:id", name: "AddressEdit", component: AddressEdit, },
     { path: "/addressList", name: "AddressList", component: AddressList, },
+    { path: "/browse", name: "Browse", component: Browse, },
+    { path: "/browse", name: "Browse", component: Browse, },
+    { path: "/order", name: "Order", component: Order },
+    { path: "/payMent", name: "PayMent", component: PayMent },
+    { path: "/payOk", name: "PayOk", component: PayOk },
     { path: "/", name: "Home", component: Home, },
 
 ]

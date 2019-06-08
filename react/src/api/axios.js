@@ -69,7 +69,7 @@ export default (url, type = 'post', isShowLoadings = true) => {
             }
             // 错误物理请求处理
         }).catch(err => {
-            toast('服务器超时','error')
+            toast('请登录','error')
             return Promise.reject(err)   // 返回接口返回的错误信息
         })
     }

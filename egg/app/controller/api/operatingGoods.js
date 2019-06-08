@@ -185,6 +185,74 @@ class operatingGoods extends BaseController {
         const data = await this.ctx.model.Address.findOne({ '_id': id })
         this.success('查询成功', data)
     }
+
+    // 接受订单
+    async order() {
+        const data = this.ctx.request.body
+        const { ctx } = this
+        if (!data) {
+            return this.error('缺少重要参数')
+        }
+        // 订单信息
+        let platform = '622'           // 订单头
+        let r1 = Math.floor(Math.random() * 10)
+        let r2 = Math.floor(Math.random() * 10)
+        let sysDate = ctx.helper.format(new Date(), 'YYYYMMDDHHmmss')          // 系统时间
+        let add_time = ctx.helper.format(new Date(), 'YYYY-MM-DD HH:mm:ss')   // 订单创建时间
+        let order_id = platform + r1 + sysDate + r2;   // 订单id
+        let shopList = []
+        // 根据id查询出购物车订单
+        for (let i = 0; i < data.orderId.length; i++) {
+            if (data.idDirect) {    // 说明不是从购物车过来（直接购买）
+                const res = await ctx.model.Goods.findOne({ id: data.orderId[0] })
+                shopList[i] = {
+                    count: data.count,
+                    present_price: res.present_price,
+                    cid: res.id,
+                    image_path: res.image_path,
+                    name: res.name,
+                    mallPrice: data.count * res.present_price,
+                    userName:ctx.userName,
+                    order_id
+                }
+            } else {    // 购物车来的
+                let item = await ctx.model.ShopList.find({ userName:ctx.userName, cid: data.orderId[i] })
+                let datas = item[0]
+                shopList[i] = {
+                    count: datas.count,
+                    present_price: datas.present_price,
+                    cid: datas.cid,
+                    image_path: datas.image_path,
+                    name: datas.name,
+                    mallPrice: datas.count * datas.present_price,
+                    userName:ctx.userName,
+                    order_id
+                }
+            }
+        }
+        // 计算商品的总价（后端计算）
+        const mallPrice = shopList.reduce((x, y) => {
+            return x + y.present_price * y.count;
+        }, 0)
+        let orders = {
+            userName:ctx.userName,
+            status: 0,
+            order_id,
+            tel: data.tel,
+            address: data.address,
+            add_time,
+            mallPrice,
+            order_list: shopList
+        }
+        // 存入数据库
+        let orderList = new ctx.model.OrderList(orders)
+        await orderList.save()
+        // 删除购物车列表的商品
+        if (!data.idDirect) {
+            await ctx.model.ShopList.deleteMany({ userName:ctx.userName, cid: data.orderId })
+        }
+        this.success(`结算成功,一共 ${mallPrice.toFixed(2)} 元`)
+    }
 }
 
 module.exports = operatingGoods;

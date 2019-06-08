@@ -30,7 +30,9 @@ class Collection extends Component {
                         </Scroll>
                     </div>
                 </div>
-
+                {
+                    !this.state.list.size ? <div className='no-data'>暂无收藏商品~~</div> : null
+                }
             </div>
         );
     }
@@ -69,7 +71,7 @@ class Collection extends Component {
         if (data.code == 10000) {
             this.page = 1
             this.props.clearArr()
-            this.child.scrollTo(0,0,300)
+            this.child.scrollTo(0, 0, 300)
             this.getCollectionList()
         }
     }

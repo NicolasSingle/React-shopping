@@ -6,24 +6,22 @@ import Scroll from 'public/Scroll'
 import NotLogged from 'c/shoppingCart/NotLogged'
 import Logged from 'c/shoppingCart/Logged'
 import './index.scss'
-import Api from 'api/api'
+import * as action_fn from './store/action_fn'
+import { connect } from 'react-redux';
 class index extends Component {
-    state = {
-        list: []
-    }
-
     componentDidMount() {
-        this.getCard()
+        this.props.getCard()
     }
 
     render() {
+        const list = this.props.list.toJS()
         return (
             <div>
                 <NavBar title="购物车" className='border-bottom' />
                 <div className='shopping-cart'>
                     <Scroll>
                         {
-                            !this.state.list.length ? <NotLogged /> : <Logged list={this.state.list} getCard={this.getCard}/>
+                            !list.length ? <NotLogged /> : <Logged list={list} getCard={this.props.getCard} />
                         }
                     </Scroll>
                 </div>
@@ -32,17 +30,18 @@ class index extends Component {
         )
     }
 
-    getCard = async () => {
-        const data = await Api.getCard()
-        if (data.code == 10000) {
-            this.setState(prev => ({
-                list: data.data
-            }))
-        }
-    }
-
-
-
+  
 }
 
-export default withRouter(index)
+const mapGetters = state => ({
+    list: state.getIn(['shoppingCart', 'shopList'])
+})
+
+const mapActions = dispatch => ({
+    getCard() {
+        dispatch(action_fn.getCard())
+    },
+
+})
+
+export default withRouter(connect(mapGetters, mapActions)(index))

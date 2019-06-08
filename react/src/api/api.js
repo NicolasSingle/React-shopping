@@ -20,6 +20,6 @@ export default {
     setDefaultAddress: ajax('/setDefaultAddress'),  // 设置默认收货地址    
     getOneAddress: ajax('/getOneAddress'),  // 查询单条收货地址   
     deleteAddress: ajax('/deleteAddress'),  // 删除单条收货地址   
-
-
+    getDefaultAddress: ajax('/getDefaultAddress', 'get'),  // 查询默认收货地址   
+    placeOrder: ajax('/order'), //提交订单
 }

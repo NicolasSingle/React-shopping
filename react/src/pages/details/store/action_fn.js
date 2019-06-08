@@ -1,6 +1,8 @@
 import * as types from './action_types'
 import Api from 'api/api'
 import { toast } from 'js/utils'
+import { recentlyBrowse } from 'js/cache'
+
 const _getGoodsDetails = data => ({
     type: types.GOODS_DETAILS,
     data
@@ -15,6 +17,7 @@ export const getGoodsDetails = (id, page = 1) => {
             const data = await Api.goodsDetails({ id, page })
             if (data.code == 10000) {
                 dispatch(_getGoodsDetails(data.data))
+                recentlyBrowse.setBrowse(data.data.goodsOne)
             }
         } catch (error) {
 

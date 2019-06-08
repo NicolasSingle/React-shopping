@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import { Stepper, Confirm } from 'zarm';
-import {toast} from 'js/utils'
+import { Stepper, Confirm, Modal } from 'zarm';
+import { toast } from 'js/utils'
 import Api from 'api/api'
+import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux';
+import * as action_fn from 'pages/shoppingCart/store/action_fn'
 class Logged extends Component {
     static getDerivedStateFromProps(nextProps, prevState) {
         const { list } = nextProps;
@@ -19,7 +22,8 @@ class Logged extends Component {
         checkFlag: false, // 是否有商品处于选中状态
         totalPrice: 0.00,   // 总价格
         list: [],
-        confirm: false
+        confirm: false,
+        
     }
 
     componentDidMount() {
@@ -50,7 +54,7 @@ class Logged extends Component {
                     this.state.checkFlag ? (
                         <div className="confirm">
                             <div onClick={this.deleteShop}>删除</div>
-                            <div>去结算</div>
+                            <div onClick={this.settlement}>去结算</div>
                         </div>
                     ) : null
                 }
@@ -83,8 +87,10 @@ class Logged extends Component {
                     title="确认信息"
                     message="确定要删除商品吗？"
                     onOk={() => this.onOk()}
-                    onCancel={() => this.setState({confirm:false})}
+                    onCancel={() => this.onCancel()}
                 />
+
+        
             </div>
         )
     }
@@ -171,7 +177,8 @@ class Logged extends Component {
 
     // 购物车删除
     deleteShop = () => {
-        this.setState(prev=>({
+        this.css(-1)
+        this.setState(prev => ({
             confirm: true
         }))
     }
@@ -180,20 +187,72 @@ class Logged extends Component {
         const ids = this.selectAll.map(item => {
             return item.cid
         })
+        this.css(1)
         const data = await Api.deleteShop(ids)
         if (data.code == 10000) {
             toast(data.msg)
-            this.setState(prev=>({
+            this.setState(prev => ({
                 confirm: false,
+                checkFlag: false
             }))
 
             // 调用方法再请求一次数据
             this.props.getCard()
         }
     }
+
+    onCancel = () => {
+        this.css(1)
+        this.setState({ confirm: false })
+    }
+    // 去结算
+    settlement = () => {
+        // this.props.settlementAll(this.selectAll)
+        // const ids = this.selectAll.map(item => {
+        //     return item.cid
+        // })
+        // this.css(-1)
+        // console.log(ids);
+
+        // this.setState(prev => ({
+        //     modal: true,
+        // }))
+        // let timeNum = 1
+        // let timer = setInterval(() => {
+        //     timeNum--
+        //     if (timeNum < 0) {
+        //         clearInterval(timer)
+        //         this.props.history.push('/payMent')
+        //     } else {
+        //         this.setState(prev => ({
+        //             time: timeNum
+        //         }))
+        //     }
+        // }, 1000);
+        // totalPrice
+        this.props.setOrderList(this.selectAll)
+        this.props.totalPrice(this.state.totalPrice)
+        this.props.history.push('/payMent')
+
+    }
+
+    css(zindex) {
+        let ele = document.querySelector('.nav-footer')
+        ele.style.zIndex = zindex
+    }
 }
 
 Logged.defaultProps = {
     list: []
-};
-export default Logged
+}
+
+const mapActions = dispatch => ({
+    setOrderList(list) {
+        dispatch(action_fn.setOrderList(list))
+    },
+
+    totalPrice(pic) {
+        dispatch(action_fn.totalPrice(pic))
+    }
+})
+export default  withRouter(connect(null, mapActions)(Logged))

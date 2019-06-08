@@ -115,21 +115,23 @@ class UserController extends BaseController {
     // 查询用户收货地址
     async getAddress() {
         const { ctx } = this
-        const address = await ctx.model.Address.find({ userName: ctx.userName })
-
-        let flag
-        address.forEach(item => {
-            if (item.isDefault == true) {
-                flag = item
-            }
-        })
-        if (!flag) {
-            await ctx.model.Address.findOneAndUpdate({ userName: ctx.userName, _id: address[0]._id }, {
-                $set: {
-                    'isDefault': true
+        const address = await ctx.model.Address.find({ userName: ctx.userName }) || []
+        if (address.length) {
+            let flag
+            address.forEach(item => {
+                if (item.isDefault == true) {
+                    flag = item
                 }
             })
+            if (!flag) {
+                await ctx.model.Address.findOneAndUpdate({ userName: ctx.userName, _id: address[0]._id }, {
+                    $set: {
+                        'isDefault': true
+                    }
+                })
+            }
         }
+
         this.success('查询成功', address)
     }
 
@@ -149,6 +151,13 @@ class UserController extends BaseController {
             }
         })
         this.success('设置默认地址成功')
+    }
+
+    // 查询默认收货地址
+    async getDefaultAddress() {
+        const { ctx } = this
+        const defaultAdd = await ctx.model.Address.findOne({ userName: ctx.userName, isDefault: true })
+        this.success('查询成功', defaultAdd)
     }
 
 }

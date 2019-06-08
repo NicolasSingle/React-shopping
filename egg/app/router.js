@@ -17,7 +17,7 @@ module.exports = app => {
     router.get('/collection/list', controller.api.user.collectionList);    // 查询收藏的商品
     router.get('/getAddress', controller.api.user.getAddress);  // 查询收货地址
     router.post('/getOneAddress', controller.api.operatingGoods.getOneAddress);     // 查询单条收货地址        
-
+    router.get('/getDefaultAddress', controller.api.user.getDefaultAddress);     // 查询默认收货地址
 
 
     router.post('/addShop', controller.api.operatingGoods.addShop);                     // 加入购物车
@@ -27,6 +27,7 @@ module.exports = app => {
     router.post('/cancelCollection', controller.api.operatingGoods.cancelCollection);
     router.post('/address', controller.api.operatingGoods.address);                     // 保存收货地址
     router.post('/deleteAddress', controller.api.operatingGoods.deleteAddress);         // 删除单条收货地址      
-    router.post('/setDefaultAddress', controller.api.user.setDefaultAddress);     // 设置默认收货地址        
+    router.post('/setDefaultAddress', controller.api.user.setDefaultAddress);     // 设置默认收货地址      
+    router.post('/order', controller.api.operatingGoods.order);                         // 接受订单  
 
 }

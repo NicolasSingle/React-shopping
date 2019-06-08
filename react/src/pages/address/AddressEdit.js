@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import NavHeader from 'public/NavHeader'
-import { Input, Cell, Switch, Picker, Button, Confirm   } from 'zarm';
+import { Input, Cell, Switch, Picker, Button, Confirm } from 'zarm';
 import area from 'js/area'
 import { toast } from 'js/utils'
 import Api from 'api/api'
@@ -14,7 +14,7 @@ class AddressEdit extends Component {
         pickerVisible: false,
         areaTxt: '',
         addressTitle: '新增地址',
-        confirm:false,
+        confirm: false,
         cascade: {
             value: [],
             dataSource: area,
@@ -76,7 +76,7 @@ class AddressEdit extends Component {
                 {
                     this.state.addressTitle != '新增地址' ? (
                         <Cell>
-                            <Button style={{ marginTop: '5vw' }} block theme="danger" onClick={() => this.setState({confirm:true})}>删除</Button>
+                            <Button style={{ marginTop: '5vw' }} block theme="danger" onClick={() => this.setState({ confirm: true })}>删除</Button>
                         </Cell>
                     ) : ''
                 }
@@ -88,7 +88,7 @@ class AddressEdit extends Component {
                     message="你确定删除地址吗？"
                     onOkText='111'
                     onOk={this.delete}
-                    onCancel={() => this.setState({confirm:false})}
+                    onCancel={() => this.setState({ confirm: false })}
                 />
             </div>
         )
@@ -114,7 +114,7 @@ class AddressEdit extends Component {
         console.log(e);
         this.setState(prev => ({
             pickerVisible: false,
-            areaTxt: e.map(item => item.label).join('--')
+            areaTxt: e.map(item => item.label).join('')
         }))
     }
     // 查询单条收货地址
