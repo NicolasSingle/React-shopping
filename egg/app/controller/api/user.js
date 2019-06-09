@@ -64,7 +64,7 @@ class UserController extends BaseController {
         if (!email || !password) return this.error('请输入邮箱账号或密码')
         const user = await ctx.model.User.findOne({ email })
         if (user && email === user.email) {
-            await ctx.model.User.findOneAndUpdate({ _id: user._id }, {
+            await ctx.model.User.updateOne({ _id: user._id }, {
                 $set: {
                     email,
                     password: md5(password)
@@ -124,7 +124,7 @@ class UserController extends BaseController {
                 }
             })
             if (!flag) {
-                await ctx.model.Address.findOneAndUpdate({ userName: ctx.userName, _id: address[0]._id }, {
+                await ctx.model.Address.updateOne({ userName: ctx.userName, _id: address[0]._id }, {
                     $set: {
                         'isDefault': true
                     }
@@ -145,7 +145,7 @@ class UserController extends BaseController {
             }
         })
 
-        await ctx.model.Address.findOneAndUpdate({ userName: ctx.userName, _id: id }, {
+        await ctx.model.Address.updateOne({ userName: ctx.userName, _id: id }, {
             $set: {
                 'isDefault': true,
             }
@@ -160,6 +160,51 @@ class UserController extends BaseController {
         this.success('查询成功', defaultAdd)
     }
 
+    // 查询用户单条订单
+    async getOrderDetils() {
+        const { ctx } = this
+        const order_id = ctx.query.order_id
+        const order = await ctx.model.OrderList.findOne({ userName: ctx.userName, order_id })
+        this.success('查询成功', order)
+    }
+
+    // 查询用户订单
+    async myOrder() {
+        const { ctx } = this
+        const { status } = ctx.query
+        if (status != 0 && status != 1) {
+            return this.success('查询成功', [])
+        }
+
+        let pageSize = 10
+        let page = ctx.query.page || 1
+        let skip = (page - 1) * pageSize
+
+        const res = await ctx.model.OrderList.find({ userName: ctx.userName, status }).sort({ 'add_time': -1 }).skip(skip).limit(pageSize)
+        const count = await ctx.model.OrderList.find({ userName: ctx.userName, status }).countDocuments()
+        let data = {
+            list: res,
+            count
+        }
+        this.success('查询成功', data)
+    }
+
+    // 查询用户订单数量
+    async orderNum() {
+        const { ctx } = this
+        // 0,待付款 1，已完成
+        let num = [], num1 = [],numList = []
+        const res = await ctx.model.OrderList.find({ userName: ctx.userName })
+        res.forEach(item => {
+            if (item.status == 0) {
+                num.push(item)
+            } else if (item.status == 1) {
+                num1.push(item)
+            }
+        })
+        numList.push(num.length, num1.length)
+        this.success('查询成功', { numList })
+    }
 }
 
 

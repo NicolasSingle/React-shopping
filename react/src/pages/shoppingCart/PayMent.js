@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavHeader from 'public/NavHeader'
 import Scroll from 'public/Scroll'
-import { Modal } from 'zarm';
+import { Modal, Toast } from 'zarm';
 import Api from 'api/api'
 import GoodsItem from 'public/GoodsItem'
 import * as action_fn from './store/action_fn'
@@ -14,7 +14,7 @@ class PayMent extends Component {
         modal: false,
         time: 3
     }
-
+    order_id = ''
     componentDidMount() {
         if (!this.props.orderList.size) {
             this.props.history.push('/shoppingCart')
@@ -66,6 +66,10 @@ class PayMent extends Component {
 
     // 去支付
     submit = () => {
+        
+        if (!this.state.address._id) {
+            return Toast.show('请添加收货地址', 500);
+        }
         this.setState(prev => ({
             modal: true,
         }))
@@ -75,7 +79,10 @@ class PayMent extends Component {
             timeNum--
             if (timeNum < 0) {
                 clearInterval(timer)
-                this.props.history.push('/payOk')
+                // this.props.history.push('/payOk')
+                if (this.order_id) {
+                    this.props.history.push('/payOk/' + this.order_id);
+                } 
             } else {
                 this.setState(prev => ({
                     time: timeNum
@@ -84,9 +91,24 @@ class PayMent extends Component {
         }, 1000);
     }
 
-    placeOrder = () => {
-        console.log(this.props.orderList.toJS());
-        
+    placeOrder = async () => {
+        const state = this.state
+        if (!state.address._id) {
+            return Toast.show('请添加收货地址', 500);
+        }
+        let goods = this.props.orderList.toJS()
+        let goodsIds = goods.map(item => {
+            return item.cid
+        })
+        const data = {
+            addressId: state.address._id,
+            goodsIds,
+        }
+        const res = await Api.placeOrder(data)
+        if (res.code == 10000) {
+            this.order_id = res.data
+            this.props.setOrderList([])
+        }
     }
 }
 const mapGetters = state => ({

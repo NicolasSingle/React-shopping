@@ -1,16 +1,24 @@
 import React, { Component } from 'react';
 import NavHeader from 'public/NavHeader'
-import { Radio, Button, Toast, Confirm } from 'zarm';
+import { Radio, Button, Toast, Confirm, Alert } from 'zarm';
 import './index.scss'
+import Api from 'api/api'
 class PayOk extends Component {
     state = {
         btn: true,
-        confirm: false
+        confirm: false,
+        alert: false,
+        mallPrice: '',
+    }
+    id = ''
+    componentDidMount() {
+        this.id = this.props.match.params.id
+        this.getOrderDetils(this.id)
     }
     render() {
         return (
             <div className='pay-ok'>
-                <div className='border-bottom'>
+                <div>
                     <NavHeader goBack={this.goBack} icon={true} title='支付详情' />
                 </div>
                 <Radio.Group type="cell" onChange={e => this.onChange(e)}>
@@ -18,27 +26,36 @@ class PayOk extends Component {
                     <Radio className='border-bottom' value="1"><i className="fa fa-weixin" aria-hidden="true"></i>支付宝</Radio>
                     <Radio className='border-bottom' value="2"><i className="fa fa-weixin" aria-hidden="true"></i>微信</Radio>
                 </Radio.Group>
-                {this.state.btn ? <Button className='btn' block theme="danger">支付</Button> : ''}
+
+                {this.state.btn && this.state.mallPrice ? <Button className='btn' onClick={this.pay} block theme="danger">支付</Button> : ''}
                 <Confirm
                     shape="radius"
                     visible={this.state.confirm}
                     title="提示"
                     message="当前订单未支付,确定要返回吗？"
                     onOk={() => this.back()}
-                    onCancel={() => this.setState({confirm:false})}
+                    onCancel={() => this.setState({ confirm: false })}
+                />
+                <Alert
+                    shape="radius"
+                    visible={this.state.alert}
+                    title="提示"
+                    message={`支付成功,一共${this.state.mallPrice}元`}
+                    onCancel={this.offAlert}
                 />
             </div>
         )
     }
 
     goBack = () => {
-        this.setState(state =>({
+        this.setState(state => ({
             confirm: true
         }))
     }
 
     back = () => {
-        this.props.history.replace('/')
+        // this.props.history.replace('/')
+        this.props.history.goBack()
     }
     onChange = e => {
         let flag
@@ -51,6 +68,39 @@ class PayOk extends Component {
         this.setState(state => ({
             btn: flag
         }))
+    }
+
+    pay = async () => {
+        // 支付
+        const data = await Api.payOrder({ order_id: this.id })
+        if (data.code == 10000) {
+            setTimeout(() => {
+                this.setState(state => ({
+                    alert: true
+                }))
+            }, 400);
+            
+        } 
+    }
+
+    offAlert = () => {
+        this.back()
+    }
+    getOrderDetils = async order_id => {
+        const data = await Api.getOrderDetils({ order_id })
+        if (data.code == 10000) {
+            if (data.data.status == 0) {
+                this.setState(state => ({
+                    mallPrice: data.data.mallPrice
+                }))
+            } else {
+                Toast.show(`该订单已完成`, 500);
+                setTimeout(() => {
+                    this.back()
+                }, 1000);
+            }
+
+        }
     }
 }
 

@@ -44,10 +44,9 @@ const Homes = [
     { path: "/addressEdit/:id", name: "AddressEdit", component: AddressEdit, },
     { path: "/addressList", name: "AddressList", component: AddressList, },
     { path: "/browse", name: "Browse", component: Browse, },
-    { path: "/browse", name: "Browse", component: Browse, },
-    { path: "/order", name: "Order", component: Order },
+    { path: "/order/:id", name: "Order", component: Order },
     { path: "/payMent", name: "PayMent", component: PayMent },
-    { path: "/payOk", name: "PayOk", component: PayOk },
+    { path: "/payOk/:id", name: "PayOk", component: PayOk },
     { path: "/", name: "Home", component: Home, },
 
 ]

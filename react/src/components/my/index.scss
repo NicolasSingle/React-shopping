@@ -10,10 +10,12 @@
     padding: 10% 0;
     box-sizing: border-box;
     position: relative;
-    span{
+
+    span {
         display: block;
         margin-bottom: 10px;
     }
+
     img {
         width: 18.667vw;
         height: 18.667vw;
@@ -46,9 +48,23 @@
             color: #999;
         }
 
-        span {
+        .titles {
             font-size: 14px;
             color: #999;
+        }
+
+        .count {
+            position: absolute;
+            left: 53%;
+            top: 1.8vw;
+            color: #fff;
+            background: #e0322b;
+            display: inline-block;
+            width: 5.333vw;
+            height: 5.333vw;
+            line-height: 5.333vw;
+            font-size: 12px;
+            border-radius: 50%;
         }
     }
 }
@@ -66,8 +82,8 @@
         font-size: 3.733vw;
         overflow: hidden;
         align-items: center;
-        padding:8px 15px;
-       
+        padding: 8px 15px;
+
         i {
             font-size: 4.267vw;
             margin-right: 3.333vw;

@@ -12,6 +12,7 @@ module.exports = app => {
         order_id: String,           // 订单id
         tel: Number,                // 用户电话
         address: String,            // 用户收货地址
+        name: String,            // 收货人
         add_time: {                 //  添加订单时间
             type: String,
             default: +new Date()
@@ -20,7 +21,6 @@ module.exports = app => {
         order_list: [
             {
                 count: Number,
-                userName: String,
                 present_price: Number,
                 cid: String,
                 image_path: String,

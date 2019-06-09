@@ -22,4 +22,8 @@ export default {
     deleteAddress: ajax('/deleteAddress'),  // 删除单条收货地址   
     getDefaultAddress: ajax('/getDefaultAddress', 'get'),  // 查询默认收货地址   
     placeOrder: ajax('/order'), //提交订单
+    getOrderDetils: ajax('/getOrderDetils', 'get'), //查询单条订单
+    payOrder: ajax('/payOrder'), //支付订单
+    myOrder: ajax('/myOrder','get'), //查询用户订单
+    orderNum: ajax('/myOrder/orderNum','get'), //查询用户订单数量
 }

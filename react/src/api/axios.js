@@ -37,11 +37,12 @@ axios.interceptors.response.use(
             if (error.response.status == 401) {
                 localStorage.clear()
                 isShowLoading(true,'none')    // 隐藏loading
+                toast('请先登录','error')
                 window.location.href = '/#/login'
-            } else if(error.response.status == 504) {
+            } else if(error.response.status == 504 ||error.response.status == 404) {
                 isShowLoading(true,'none')    // 隐藏loading
                 toast('服务器超时','error')
-            }
+            } 
         }
         return Promise.reject(error.response.data)   // 返回接口返回的错误信息
     })
@@ -69,7 +70,7 @@ export default (url, type = 'post', isShowLoadings = true) => {
             }
             // 错误物理请求处理
         }).catch(err => {
-            toast('请登录','error')
+            // toast('请求错误','error')
             return Promise.reject(err)   // 返回接口返回的错误信息
         })
     }
