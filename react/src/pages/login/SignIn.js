@@ -20,7 +20,7 @@ class SignIn extends Component {
                 </div>
                 <div className='inputs'>
                     <div className='pwd'>
-                        <input maxLength='10' name='username' defaultValue={this.state.username} onChange={this.handleInputChange} type='text' placeholder='USERNAME OR EMAIL' />
+                        <input  name='username' defaultValue={this.state.username} onChange={this.handleInputChange} type='text' placeholder='USERNAME OR EMAIL' />
                         <i className='fa fa-close' onClick={this.clear}></i>
                     </div>
                     <div className='pwd'>
