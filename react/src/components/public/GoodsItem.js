@@ -1,12 +1,13 @@
 
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
+import './public.scss'
 class GoodsItem extends Component {
     render() {
         const props = this.props
         return (
             <div className='goods-item border-bottom' onClick={() => this.details(props.goodsItem.get('id')||props.goodsItem.get('cid'))}>
-                <div className='border left'><img style={{ 'objectFit': props.isCollection || props.isPayMent? 'scale-down' : '' }} src={props.goodsItem.get('image_path')} alt='' /></div>
+                <div className='border lefts'><img style={{ 'objectFit': props.isCollection || props.isPayMent? 'scale-down' : '' }} src={props.goodsItem.get('image_path')} alt='' /></div>
                 <div className='right'>
                     <p className='name'>{props.goodsItem.get('name')}</p>
                     <p className='price'>

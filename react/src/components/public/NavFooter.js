@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router-dom'
-
+import './public.scss'
 class NavFooter extends Component {
     render() {
         const footer = [
