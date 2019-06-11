@@ -44,15 +44,15 @@ class Home extends React.Component {
 }
 
 
-const mapGetters = (state) => ({
+const mapStateToProps = (state) => ({
     recommend: state.getIn(['home', 'recommend'])
 })
 
-const mapActions = dispatch => ({
+const mapDispatchToProps = dispatch => ({
     getRecommend() {
         dispatch(action_fn.getRecommend())
     }
 })
 
 
-export default connect(mapGetters, mapActions)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Home)

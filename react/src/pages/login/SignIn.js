@@ -81,9 +81,9 @@ class SignIn extends Component {
     }
 }
 
-const mapActions = dispatch => ({
+const mapDispatchToProps = dispatch => ({
     signin(name, pwd, that) {
         dispatch(action_fn.signin(name, pwd, that))
     }
 })
-export default connect(null, mapActions)(SignIn)
+export default connect(null, mapDispatchToProps)(SignIn)

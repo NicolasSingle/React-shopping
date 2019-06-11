@@ -59,10 +59,10 @@ class RestorePassword extends Component {
     }
 }
 
-const mapActions = dispatch => ({
+const mapDispatchToProps = dispatch => ({
     restorePassword(state,that) {
         dispatch(action_fn.restorePassword(state,that))
     }
 })
 
-export default connect(null, mapActions)(RestorePassword)
+export default connect(null, mapDispatchToProps)(RestorePassword)

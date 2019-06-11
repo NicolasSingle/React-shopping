@@ -246,7 +246,7 @@ Logged.defaultProps = {
     list: []
 }
 
-const mapActions = dispatch => ({
+const mapDispatchToProps = dispatch => ({
     setOrderList(list) {
         dispatch(action_fn.setOrderList(list))
     },
@@ -255,4 +255,4 @@ const mapActions = dispatch => ({
         dispatch(action_fn.totalPrice(pic))
     }
 })
-export default  withRouter(connect(null, mapActions)(Logged))
+export default  withRouter(connect(null, mapDispatchToProps)(Logged))

@@ -64,11 +64,11 @@ class Details extends Component {
     }
 }
 
-const mapGetters = state => ({
+const mapStateToProps = state => ({
     goods_details: state.getIn(['details', 'goods_details'])
 })
 
-const mapActions = dispatch => ({
+const mapDispatchToProps = dispatch => ({
     goodsDetails(id, page) {
         dispatch(action_fn.getGoodsDetails(id, page))
     },
@@ -82,4 +82,4 @@ const mapActions = dispatch => ({
     }
 })
 
-export default connect(mapGetters, mapActions)(Details) 
+export default connect(mapStateToProps, mapDispatchToProps)(Details) 

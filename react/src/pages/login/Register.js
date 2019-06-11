@@ -66,10 +66,10 @@ class Register extends Component {
     }
 }
 
-const mapActions = dispatch => ({
+const mapDispatchToProps = dispatch => ({
     register(state,that) {
         dispatch(action_fn.register(state,that))
     }
 })
 
-export default connect(null, mapActions)(Register)
+export default connect(null, mapDispatchToProps)(Register)

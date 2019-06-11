@@ -111,14 +111,14 @@ class PayMent extends Component {
         }
     }
 }
-const mapGetters = state => ({
+const mapStateToProps = state => ({
     orderList: state.getIn(['shoppingCart', 'orderList']),
     totalPrice: state.getIn(['shoppingCart', 'totalPrice']),
 })
 
-const mapActions = dispatch => ({
+const mapDispatchToProps = dispatch => ({
     setOrderList(list) {
         dispatch(action_fn.setOrderList(list))
     }
 })
-export default connect(mapGetters, mapActions)(PayMent)
+export default connect(mapStateToProps, mapDispatchToProps)(PayMent)

@@ -116,12 +116,12 @@ class Category extends Component {
 
 
 }
-const mapGetters = state => ({
+const mapStateToProps = state => ({
     category: state.getIn(['category', 'category']),
     goodsItem: state.getIn(['category', 'goodsItem'])
 })
 
-const mapActions = dispatch => ({
+const mapDispatchToProps = dispatch => ({
     getCategory(that, id) {
         dispatch(action_fn.getCategory(that, id))
     },
@@ -132,4 +132,4 @@ const mapActions = dispatch => ({
 
 })
 
-export default connect(mapGetters, mapActions)(Category)
+export default connect(mapStateToProps, mapDispatchToProps)(Category)

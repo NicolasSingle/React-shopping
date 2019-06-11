@@ -33,15 +33,15 @@ class index extends Component {
   
 }
 
-const mapGetters = state => ({
+const mapStateToProps = state => ({
     list: state.getIn(['shoppingCart', 'shopList'])
 })
 
-const mapActions = dispatch => ({
+const mapDispatchToProps = dispatch => ({
     getCard() {
         dispatch(action_fn.getCard())
     },
 
 })
 
-export default withRouter(connect(mapGetters, mapActions)(index))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(index))

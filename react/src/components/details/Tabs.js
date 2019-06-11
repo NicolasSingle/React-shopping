@@ -19,7 +19,7 @@ class GoodsTabs extends Component {
         );
     }
 }
-const mapGetters = state => ({
+const mapStateToProps = state => ({
     goods_details: state.getIn(['details', 'goods_details'])
 })
-export default connect(mapGetters, null)(GoodsTabs)
+export default connect(mapStateToProps, null)(GoodsTabs)
