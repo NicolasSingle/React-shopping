@@ -97,10 +97,12 @@
           "libraryName": "zarm",
           "style": true
         }
-      ]
+      ],
+      ["@babel/plugin-proposal-decorators", { "legacy": true }]
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-decorators": "^7.4.4",
     "autoprefixer": "^9.5.1",
     "babel-plugin-import": "^1.11.0",
     "cssnano": "^4.1.10",

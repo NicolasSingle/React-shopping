@@ -1,11 +1,12 @@
 import React, { Component } from 'react'
 import './index.scss'
 import { SearchBar } from 'zarm'
-export default class Search extends Component {
+import { withRouter } from 'react-router-dom'
+class Search extends Component {
     render() {
         return (
             <header>
-                <div className='left'>百色 ▼</div>
+                <div className='left' onClick={this.goCity}>百色 ▼</div>
                 <div className='right'>
                     <div>
                         <SearchBar
@@ -36,4 +37,11 @@ export default class Search extends Component {
             </header>
         )
     }
+
+    goCity = () => {
+        this.props.history.push('/city')
+    }
 }
+
+
+export default withRouter(Search)

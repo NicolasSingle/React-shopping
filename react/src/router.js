@@ -94,6 +94,10 @@ const PayOk = Loadable({
     loader: () => import('pages/shoppingCart/PayOk'),
     loading: MyLoadingComponent
 });
+const City = Loadable({
+    loader: () => import('pages/city'),
+    loading: MyLoadingComponent
+});
 // import App from './App'
 // import Home from 'pages/home'       //首页
 // import Category from 'pages/category'       //分类
@@ -138,6 +142,7 @@ const Homes = [
     { path: "/order/:id", name: "Order", component: Order },
     { path: "/payMent", name: "PayMent", component: PayMent },
     { path: "/payOk/:id", name: "PayOk", component: PayOk },
+    { path: "/city", name: "City", component: City },
     { path: "/", name: "Home", component: Home, },
 ]
 class ERouter extends Component {

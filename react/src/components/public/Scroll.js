@@ -37,9 +37,10 @@ class Scroll extends Component {
         });
         if (this.props.listenScroll) {
             //滚动事件触发
-            const that = this; //pos 指的是滚动到的位置
+            // const that = this; //pos 指的是滚动到的位置
             this.scroll.on("scroll", pos => {
-                that.$emit("scroll", pos);
+                this.props.onScroll(pos)
+                // that.$emit("scroll", pos);
             });
         }
 
