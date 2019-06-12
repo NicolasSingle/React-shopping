@@ -159,7 +159,7 @@ class Logged extends Component {
     // 购物车加减
     stepper = async (count, id) => {
         const data = await Api.editCart({ count, id })
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             let arr = [...this.state.list]
             arr.forEach((item, index) => {
                 if (item.cid == id) {
@@ -189,7 +189,7 @@ class Logged extends Component {
         })
         this.css(1)
         const data = await Api.deleteShop(ids)
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             toast(data.msg)
             this.setState(prev => ({
                 confirm: false,

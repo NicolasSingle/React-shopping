@@ -25,7 +25,7 @@ export const getCategory = (that, id = null) => {
         })
         // 然后再请求数据
         const data = await Api.recommend()
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             dispatch(_category(data.data.category))
             that.setState(prev => ({
                 list: fromJS(data.data.category[0].bxMallSubDto)
@@ -41,7 +41,7 @@ export const getCategory = (that, id = null) => {
 export const getGoodsList = mallSubId => {
     return async dispatch => {
         const data = await Api.classification({ mallSubId })
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             dispatch(_categoryGoodsItem(data.data))
         }
     }

@@ -57,7 +57,7 @@ class PayMent extends Component {
 
     getDefaultAddress = async () => {
         const data = await Api.getDefaultAddress()
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             this.setState(state => ({
                 address: { ...state.address, ...data.data }
             }))
@@ -105,7 +105,7 @@ class PayMent extends Component {
             goodsIds,
         }
         const res = await Api.placeOrder(data)
-        if (res.code == 10000) {
+        if (res.code === window.SUCCESS) {
             this.order_id = res.data
             this.props.setOrderList([])
         }

@@ -45,7 +45,7 @@ class Collection extends Component {
         if (this.props.isLocked()) return // 必须等待上一次请求完成
         this.props.locked()//开始请求之前锁住
         const data = await Api.getCollectionList({ page: this.page })
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             this.props.setTotal(data.data.count)  // 总条数
             this.props.unLocked() // 解锁
             if (flag && data.data.list.length) {
@@ -65,7 +65,7 @@ class Collection extends Component {
     // 删除收藏
     deleteItem = async id => {
         const data = await Api.cancelCollection({ id })
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             this.page = 1
             this.props.clearArr()
             this.child.scrollTo(0, 0, 300)

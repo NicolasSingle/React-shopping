@@ -1,5 +1,4 @@
 import { fromJS } from 'immutable'
-import * as types from './action_types'
 const defauleState = fromJS({
 
 })

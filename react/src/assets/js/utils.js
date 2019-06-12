@@ -15,7 +15,7 @@ export const toast = (title, type) => {
 
 export const addShop = async id => {
     const data = await Api.addShop({ id })
-    if (data.code == 10000) {
+    if (data.code === window.SUCCESS) {
         toast(data.msg)
     } else {
         toast('加入购物车失败','error')

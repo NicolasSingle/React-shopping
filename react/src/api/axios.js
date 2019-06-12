@@ -58,13 +58,14 @@ export default (url, type = 'post', isShowLoadings = true) => {
             isShowLoading(isShowLoadings,'none')    // 请求成功隐藏loading
             const { status, data } = res;
             // 正确状态处理
-            if (status == 200 && data.code == 10000) {
+            if (status === 200 && data.code === 10000) {
+                window.SUCCESS = Number(data.code)
                 return data;
-            } else if (data.code == 20001) {  // token过期或者未登录
+            } else if (data.code === 20001) {  // token过期或者未登录
                 window.location.href = '/#/login'
                 localStorage.clear()
                 isShowLoading(isShowLoadings,'none')    // 隐藏loading
-            } else if (data.code == 10002) {    // 接口其他提示信息
+            } else if (data.code === 10002) {    // 接口其他提示信息
                 toast(data.msg,'error')
                 return data
             }

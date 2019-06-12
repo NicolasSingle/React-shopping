@@ -58,8 +58,9 @@ class PayOk extends Component {
         this.props.history.goBack()
     }
     onChange = e => {
+        e = Number(e)
         let flag
-        if (e == 1 || e == 2) {
+        if (e === 1 || e === 2) {
             flag = false
             Toast.show('暂未实现', 500);
         } else {
@@ -73,14 +74,14 @@ class PayOk extends Component {
     pay = async () => {
         // 支付
         const data = await Api.payOrder({ order_id: this.id })
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             setTimeout(() => {
                 this.setState(state => ({
                     alert: true
                 }))
             }, 400);
-            
-        } 
+
+        }
     }
 
     offAlert = () => {
@@ -88,8 +89,8 @@ class PayOk extends Component {
     }
     getOrderDetils = async order_id => {
         const data = await Api.getOrderDetils({ order_id })
-        if (data.code == 10000) {
-            if (data.data.status == 0) {
+        if (data.code === window.SUCCESS) {
+            if (data.data.status === 0) {
                 this.setState(state => ({
                     mallPrice: data.data.mallPrice
                 }))

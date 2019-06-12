@@ -26,12 +26,11 @@ class index extends Component {
 
     getOrderNum = async () => {
         const data = await Api.orderNum()
-        console.log(data);
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             this.setState(state => ({
                 numList: data.data.numList
             }))
-        }
+        } 
 
     }
 }

@@ -120,7 +120,7 @@ class AddressEdit extends Component {
     // 查询单条收货地址
     getOneAddress = async id => {
         const data = await Api.getOneAddress({ id })
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             this.setState({
                 username: data.data.name,
                 phone: data.data.tel,
@@ -138,7 +138,7 @@ class AddressEdit extends Component {
             confirm: false
         })
         const data = await Api.deleteAddress({ id: this.id })
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             toast(data.msg)
             setTimeout(() => {
                 this.goBack()
@@ -161,7 +161,7 @@ class AddressEdit extends Component {
             id: this.id
         })
 
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             toast(data.msg)
             setTimeout(() => {
                 this.goBack()

@@ -15,7 +15,7 @@ const _orderList = data => ({
 export const getCard = () => {
     return async dispatch => {
         const data = await Api.getCard()
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             dispatch(_shoppingList(data.data))
         }
     }

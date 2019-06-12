@@ -14,8 +14,8 @@ class Category extends Component {
         defaultValue: 0,
     }
     componentDidMount() {
-        const id = this.props.location.query && this.props.location.query.id || null
-        const index = this.props.location.query && this.props.location.query.index || 0
+        const id = (this.props.location.query && this.props.location.query.id) || null
+        const index = (this.props.location.query && this.props.location.query.index) || 0
         this.setState(prev => ({
             leftTabIndex: index
         }))

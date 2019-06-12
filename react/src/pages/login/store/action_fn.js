@@ -1,23 +1,9 @@
-import * as types from './action_types'
+
 import Api from 'api/api'
 import { toast } from 'js/utils'
-const changeSignin = () => ({
-    type: types.SIGNIN
-})
-
-const changeSegister = () => ({
-    type: types.REGISTER
-})
-
-const changeRestorePassword = () => ({
-    type: types.RESTORE_PASSWORD
-})
-
-
-
 
 const _login_fn = (data, that) => {
-    toast(data.msg, data.code == 10002 ? 'error' : null)
+    toast(data.msg, data.code === 10002 ? 'error' : null)
     localStorage.setItem('token', data.data)
     setTimeout(() => {
         that.props.history.push('/home');
@@ -30,7 +16,7 @@ export const signin = (username, password, that) => {
         const data = await Api.login({
             username, password
         })
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             localStorage.setItem('username', that.state.username)
             _login_fn(data, that)
         } 
@@ -42,7 +28,7 @@ export const register = (state, that) => {
     
     return async dispatch => {
         const data = await Api.register(state)
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             localStorage.setItem('username', state.username)
             _login_fn(data, that)
         }
@@ -54,7 +40,7 @@ export const register = (state, that) => {
 export const restorePassword = (state, that) => {
     return async dispatch => {
         const data = await Api.restorePassword(state)
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             toast(data.msg)
             setTimeout(() => {
                 that.props.history.push('/login/index');

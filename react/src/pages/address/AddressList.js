@@ -56,7 +56,7 @@ class AddressList extends Component {
     // 设置默认地址
     onChange = async id => {
         const data = await Api.setDefaultAddress({ id })
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             toast(data.msg)
             this.getAddress()
         }
@@ -71,7 +71,7 @@ class AddressList extends Component {
     }
     getAddress = async () => {
         const data = await Api.getAddress()
-        if (data.code == 10000) {
+        if (data.code === window.SUCCESS) {
             this.setState(state => ({
                 list: data.data,
             }))
