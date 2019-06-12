@@ -6,7 +6,7 @@ class Search extends Component {
     render() {
         return (
             <header>
-                <div className='left' onClick={this.goCity}>百色 ▼</div>
+                <div className='left' onClick={this.goCity}>{localStorage.getItem('city') || '北京'} ▼</div>
                 <div className='right'>
                     <div>
                         <SearchBar

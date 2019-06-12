@@ -41,7 +41,7 @@
     }
 }
 
-.area2 {
+.area2,.item-list {
     .item {
         height: 10.667vw;
         line-height: 10.667vw;
@@ -73,15 +73,23 @@
 }
 
 #list-fixed {
-    position: absolute;
-    top: 0;
+    position: fixed;
+    top: 22.8vw;
     left: 0;
     width: 100%;
     background: #f2f2f2;
-    .fixed-title {
+    display: none;
+    #fixed-title {
         height: 30px;
         line-height: 30px;
         padding-left: 10px;
         background: #f2f2f2;
+    }
+}
+.za-search-bar{
+    position: relative;
+    z-index: 1000;
+    .za-input__clear {
+        top: 56%;
     }
 }

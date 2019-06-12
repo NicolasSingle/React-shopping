@@ -89,11 +89,13 @@ class Scroll extends Component {
         this.scroll && this.scroll.refresh();
     }
     scrollToElement() {
-        this.scroll &&
-            this.scroll.scrollToElement.apply(this.scroll, arguments);
+        this.scroll && this.scroll.scrollToElement.apply(this.scroll, arguments);
     }
     scrollTo() {
         this.scroll && this.scroll.scrollTo.apply(this.scroll, arguments);
+    }
+    scrollBy() {
+        this.scroll && this.scroll.scrollBy.apply(this.scroll, arguments);
     }
 }
 Scroll.propTypes = {
