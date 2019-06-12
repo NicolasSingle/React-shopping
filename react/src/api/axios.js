@@ -4,14 +4,6 @@ const debug = process.env.NODE_ENV === 'production'
 axios.interceptors.request.use(config => {
     try {
         let token = localStorage.getItem('token')
-        // if (token) {
-        //     if (!debug) {
-        //         config.url = '/api' + config.url
-        //     }
-        //     config.headers.Authorization = token
-        // } else {
-        //     window.location.href = '/#/login'
-        // }
         if (!debug) {
             config.url = '/api' + config.url
         }
