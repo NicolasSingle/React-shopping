@@ -20,18 +20,18 @@ class SignIn extends Component {
                 </div>
                 <div className='inputs'>
                     <div className='pwd'>
-                        <input  name='username' defaultValue={this.state.username} onChange={this.handleInputChange} type='text' placeholder='USERNAME OR EMAIL' />
-                        <i className='fa fa-close' onClick={this.clear}></i>
+                        <input name='username' maxLength='20' defaultValue={this.props.username} onChange={this.handleInputChange} type='text' placeholder='USERNAME OR EMAIL' />
+                        {/* <i className='fa fa-close' onClick={this.clear}></i> */}
                     </div>
                     <div className='pwd'>
-                        <input maxLength='16' name='password' defaultValue={this.state.password} onChange={this.handleInputChange} type={this.state.check ? 'text' : 'password'} placeholder='PASSWORD' />
+                        <input maxLength='16' name='password' defaultValue={this.props.password} onChange={this.handleInputChange} type={this.state.check ? 'text' : 'password'} placeholder='PASSWORD' />
                         <i className={`fa ${this.state.check ? 'fa-eye' : 'fa-eye-slash'}`} onClick={this.checkEye}></i>
                     </div>
                     <p>
                         <span onClick={this.goRegister}>新账户</span>
                         <span onClick={this.restorePassword}>忘记密码？</span>
                     </p>
-                    <span className='btn' onClick={this.login}>登 录</span>
+                    <span className='btn' onClick={()=>this.props.signin(this)}>登 录</span>
                 </div>
             </div>
         )
@@ -49,12 +49,16 @@ class SignIn extends Component {
         }))
     }
 
-    // 清空用户名
-    clear = () => {
-        this.setState(prev => ({
-            username: ''
-        }))
-    }
+    // // 清空用户名
+    // clear = () => {
+    //     this.props.clearInputVal('username')
+        
+    //     setTimeout(() => {
+    //         console.log(this.props.username);
+            
+    //     }, 0);
+        
+    // }
 
     // 新账户
     goRegister = () => {
@@ -67,23 +71,25 @@ class SignIn extends Component {
 
     handleInputChange = e => {
         e.persist()
-        this.setState(prev => ({
+        const data = {
             [e.target.name]: e.target.value
-        }))
-    }
-
-    // 登录
-    login = () => {
-        if (!this.state.username || !this.state.password) {
-            return toast('请填写用户名或密码','error')
         }
-        this.props.signin(this.state.username, this.state.password, this)
+        this.props.setInputVal(data)
+
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    signin(name, pwd, that) {
-        dispatch(action_fn.signin(name, pwd, that))
-    }
+const mapStateToProps = state => ({
+    username: state.getIn(['login', 'username']),
+    password: state.getIn(['login', 'password']),
 })
-export default connect(null, mapDispatchToProps)(SignIn)
+
+const mapDispatchToProps = dispatch => ({
+    signin(that) {
+        dispatch(action_fn.signin(that,'login'))
+    },
+    setInputVal(val) {
+        dispatch(action_fn.setInputVal(val))
+    },
+})
+export default connect(mapStateToProps, mapDispatchToProps)(SignIn)

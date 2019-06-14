@@ -20,18 +20,18 @@ class Register extends Component {
                 </div>
                 <div className='inputs'>
                     <div className='pwd'>
-                        <input maxLength='10' name='username' defaultValue={this.state.username} onChange={this.handleInputChange} type='text' placeholder='USERNAME' />
+                        <input maxLength='10' name='username' defaultValue={this.props.username} onChange={this.handleInputChange} type='text' placeholder='USERNAME' />
                     </div>
                     <div className='pwd'>
-                        <input type='email' name='email' placeholder='EMAIL' defaultValue={this.state.email} onChange={this.handleInputChange} />
+                        <input type='email' name='email' placeholder='EMAIL' defaultValue={this.props.email} onChange={this.handleInputChange} />
                     </div>
                     <div className='pwd'>
-                        <input maxLength='16' type='password' name='password' placeholder='PASSWORD' defaultValue={this.state.password} onChange={this.handleInputChange} />
+                        <input maxLength='16' type='password' name='password' placeholder='PASSWORD' defaultValue={this.props.password} onChange={this.handleInputChange} />
                     </div>
                     <p>
                         <span onClick={this.goSignin}>已经有账户了吗？</span>
                     </p>
-                    <span className='btn' onClick={this.register}>注 册</span>
+                    <span className='btn' onClick={()=>this.props.signin(this)}>注 册</span>
                 </div>
             </div>
         )
@@ -47,29 +47,27 @@ class Register extends Component {
 
     handleInputChange = e => {
         e.persist()
-        this.setState(prev => ({
+        const data = {
             [e.target.name]: e.target.value
-        }))
-    }
-    // 注册
-    register = async () => {
-        const state = this.state
-        if (!state.username || !state.password || !state.email) {
-            return toast('请填写完整信息','error')
         }
-        const reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
-        if (!reg.test(state.email)) {
-            return toast('邮箱格式错误','error')
-        }
-        // 注册
-        this.props.register(state,this)
+        this.props.setInputVal(data)
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    register(state,that) {
-        dispatch(action_fn.register(state,that))
-    }
+
+
+const mapStateToProps = state => ({
+    username: state.getIn(['login', 'username']),
+    password: state.getIn(['login', 'password']),
+    email: state.getIn(['login', 'email']),
 })
 
-export default connect(null, mapDispatchToProps)(Register)
+const mapDispatchToProps = dispatch => ({
+    signin(that) {
+        dispatch(action_fn.signin(that, 'register'))
+    },
+    setInputVal(val) {
+        dispatch(action_fn.setInputVal(val))
+    },
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Register)

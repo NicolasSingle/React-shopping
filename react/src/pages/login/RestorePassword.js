@@ -19,15 +19,15 @@ class RestorePassword extends Component {
                 </div>
                 <div className='inputs'>
                     <div className='pwd'>
-                        <input type='email' name='email' placeholder='EMAIL' defaultValue={this.state.email} onChange={this.handleInputChange} />
+                        <input type='email' name='email' type='email' placeholder='EMAIL' defaultValue={this.state.email} onChange={this.handleInputChange} />
                     </div>
                     <div className='pwd'>
-                        <input maxLength='16' name='password' placeholder='PASSWORD' defaultValue={this.state.password} onChange={this.handleInputChange} />
+                        <input maxLength='16' name='password' type='password' placeholder='PASSWORD' defaultValue={this.state.password} onChange={this.handleInputChange} />
                     </div>
                     <p>
                         <span>通过电子邮件还原密码</span>
                     </p>
-                    <span className='btn' onClick={this.restorePassword}>确认修改</span>
+                    <span className='btn' onClick={()=>this.props.signin(this)}>确认修改</span>
                 </div>
             </div>
         )
@@ -37,32 +37,27 @@ class RestorePassword extends Component {
         this.props.history.push('/login/index');
     }
 
-
     handleInputChange = e => {
         e.persist()
-        this.setState(prev => ({
+        const data = {
             [e.target.name]: e.target.value
-        }))
-    }
-
-    restorePassword = async () => {
-        const state = this.state
-        if (!state.password || !state.email) {
-            return toast('请填写完整信息','error')
         }
-        const reg = /\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/
-        if (!reg.test(state.email)) {
-            return toast('邮箱格式错误','error')
-        }
-        this.props.restorePassword(state,this)
-
+        this.props.setInputVal(data)
     }
 }
 
-const mapDispatchToProps = dispatch => ({
-    restorePassword(state,that) {
-        dispatch(action_fn.restorePassword(state,that))
-    }
+const mapStateToProps = state => ({
+    email: state.getIn(['login', 'email']),
+    password: state.getIn(['login', 'password']),
+
 })
 
-export default connect(null, mapDispatchToProps)(RestorePassword)
+const mapDispatchToProps = dispatch => ({
+    signin(that) {
+        dispatch(action_fn.signin(that, 'restorePassword'))
+    },
+    setInputVal(val) {
+        dispatch(action_fn.setInputVal(val))
+    },
+})
+export default connect(mapStateToProps, mapDispatchToProps)(RestorePassword)
