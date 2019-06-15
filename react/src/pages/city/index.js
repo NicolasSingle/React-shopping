@@ -10,10 +10,10 @@ class index extends Component {
         fixedTitle: "当前城市",
         searchList: []  // 搜索出来的城市
     }
-    scrollY = -1
-    heightArr = []
-    defaultValue = ''
-    diff = -1
+    scrollY = -1        // 滚动的单位坐标
+    heightArr = []      // 每个省份城市区间的高度
+    defaultValue = ''   //  搜索框默认的value
+    diff = -1           
     listFixed = null
     listTitle = null
     cityText = ''   // 选点击选中的字母

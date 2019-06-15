@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import './index.scss'
 import NavHeader from 'public/NavHeader'
-import { toast } from 'js/utils'
 import { connect } from 'react-redux';
 import * as action_fn from './store/action_fn'
 class Register extends Component {

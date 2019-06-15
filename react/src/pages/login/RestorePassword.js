@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import './index.scss'
 import NavHeader from 'public/NavHeader'
 import { connect } from 'react-redux';
-import { toast } from 'js/utils'
 import * as action_fn from './store/action_fn'
 class RestorePassword extends Component {
     state = {
