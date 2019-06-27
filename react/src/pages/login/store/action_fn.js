@@ -58,6 +58,7 @@ export const signin = (that, type) => {
         })
         if (data.code === window.SUCCESS) {
             localStorage.setItem('username', state.get('username'))
+            localStorage.setItem('token', data.data)
             // 登录成功，跳转页面
             dispatch(clearInputVal( that, !page ? 'restorePassword' : undefined))
         }

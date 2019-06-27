@@ -4,6 +4,7 @@ import { SearchBar } from 'zarm'
 import NavHeader from 'public/NavHeader'
 import Scroll from 'public/Scroll'
 import citys from 'js/city'
+import axios from 'axios'
 class index extends Component {
     state = {
         citys: citys,

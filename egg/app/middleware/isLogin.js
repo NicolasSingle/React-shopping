@@ -2,7 +2,6 @@ module.exports = function (opt, app) {
     return async (ctx, next) => {
         const arr = ['/register', '/login', '/resetPassword', '/data', '/recommend', '/getCard', '/isCollection']
         const token = ctx.header.authorization
-
         if (!token) {
             if (arr.includes(ctx.url) || ctx.url.includes('/goods/one') || ctx.url.includes('/classification')) {
                 await next()    // 没有登录也能请求

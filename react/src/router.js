@@ -7,17 +7,8 @@ import Loadable from 'react-loadable';
 const MyLoadingComponent = ({ isLoading, error }) => {
     if (isLoading) {
         return (
-            <div id="loadding">
-                <div className="van-toast van-toast--default van-toast--middle" style={{zIndex: 2024}}>
-                    <div className="van-loading van-loading--circular van-loading--white" style={{color: 'white'}}>
-                        <span className="van-loading__spinner van-loading__spinner--circular">
-                            <svg viewBox="25 25 50 50" className="van-loading__circular">
-                                <circle cx="50" cy="50" r="20" fill="none"></circle>
-                            </svg>
-                        </span>
-                    </div>
-                    <div className="van-toast__text">加载中</div>
-                </div>
+            <div >
+                
             </div>
         )
     } else {
