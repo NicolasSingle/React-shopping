@@ -6,6 +6,8 @@
 
 > 同版Vue项目地址 https://github.com/yzbgyq/Vue-shopping
 
+> nuxt实现的ssr在线阅读器 https://github.com/yzbgyq/vue-book
+
 ## 声明
 >目前代码项目还在不断完善中，本项目所用到的ui组件是[Zarm](https://github.com/ZhonganTechENG/zarm)，项目前后端完全分离，后端只提供接口，后端代码写的比较简单，适合新手学习，这是一个很简单电商网站流程，非常适合新手学习研究，后续代码会慢慢更新，欢迎交流，欢迎Issues。
 
